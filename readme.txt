@@ -45,6 +45,14 @@ Sure, you can choose opt-in or opt-out mode to let it work as you wish.
 
 No, you can be safe from plugins conflict, is developed using Cookies Enabler Js Library developed by Nicholas Ruggeri:  https://github.com/nicholasruggeri/cookies-enabler
 
+
+== Screenshots ==
+
+1. General Configuration Page: here you can enable banner and choose from opt-in (for Italia as example) or opt-out mode
+2. Banner setup: dialog or banner, colors, posizions, etc
+3. Privacy Policy Setup Page
+4. Front-end example of light banner in footer, with iframe locked before approvation in opt-in mode
+
 == Changelog ==
 
 = 1.0 =
