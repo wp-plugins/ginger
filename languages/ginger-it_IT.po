@@ -1,0 +1,335 @@
+# Copyright (C) 2015 Automattic
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: _s 1.0.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tags/_s\n"
+"POT-Creation-Date: 2015-06-18 13:07+0100\n"
+"PO-Revision-Date: 2015-06-18 13:37+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: /var/www/sitolocale/wp-content/plugins/ginger\n"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/ginger.admin.php:42
+msgid "Updated!"
+msgstr "Aggiornato!"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/ginger.admin.php:54
+msgid "General Configuration"
+msgstr "Configurazione Generale"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/ginger.admin.php:55
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:8
+msgid "Banner Setup"
+msgstr "Banner Setup"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/ginger.admin.php:57
+msgid "Privacy Policy"
+msgstr "Privacy Policy"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/ginger.admin.php:58
+msgid "Edit Url"
+msgstr "Url Setup"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/ginger.admin.php:61
+msgid "WPML Setup"
+msgstr "WPML Setup"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/ginger.admin.php:99
+msgid "Save Changes"
+msgstr "Aggiorna"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/ginger.utils.php:15
+msgid "About EU Law"
+msgstr "About EU Law"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/addon/wpml_addon.php:8
+msgid "Wpml Setup"
+msgstr "Wpml Setup"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/addon/wpml_addon.php:14
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/addon/wpml_addon.php:15
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:14
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:15
+msgid "Banner Position"
+msgstr "Posizione Banner"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/addon/wpml_addon.php:16
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:16
+msgid "Top"
+msgstr "In alto"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/addon/wpml_addon.php:17
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:17
+msgid "Bottom"
+msgstr "In basso"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/addon/wpml_addon.php:22
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/addon/wpml_addon.php:23
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:22
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:23
+msgid "Banner Text"
+msgstr "Testo Banner"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/addon/wpml_addon.php:29
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:29
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/dialog.php:22
+msgid ""
+"You can use syntax <code>{{privacy_page}}</code> to link Privacy Police Page "
+"defined in <a href=\"admin.php?page=ginger-setup&tab=policy\">Privacy Policy "
+"Tab</a>"
+msgstr ""
+"Puoi usare la sintassi <code>{{privacy_page}}</code> per linkare alla pagina "
+"Privacy Policy definita in <a href=\"admin.php?page=ginger-setup&tab=policy"
+"\">Privacy Policy Tab</a>"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/addon/wpml_addon.php:34
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/addon/wpml_addon.php:35
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:34
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:35
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:47
+msgid "Iframe Text"
+msgstr "Testo Iframe"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/addon/wpml_addon.php:47
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/dialog.php:28
+msgid "Colors"
+msgstr "Colori"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/addon/wpml_addon.php:52
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/addon/wpml_addon.php:53
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:109
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:110
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/dialog.php:33
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/dialog.php:34
+msgid "Background"
+msgstr "Sfondo"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/addon/wpml_addon.php:61
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/addon/wpml_addon.php:62
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:55
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:66
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:83
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:118
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:119
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/dialog.php:42
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/dialog.php:43
+msgid "Text"
+msgstr "Testo"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/addon/wpml_addon.php:70
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/addon/wpml_addon.php:71
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/link.php:8
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/url.php:8
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:134
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:135
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/dialog.php:51
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/dialog.php:52
+msgid "Link"
+msgstr "Link"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/url.php:35
+msgid "URL"
+msgstr "URL"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/url.php:37
+msgid "Enable"
+msgstr "Abilitato"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/url.php:37
+msgid "YES"
+msgstr "SI"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/url.php:38
+msgid "NO"
+msgstr "NO"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:8
+msgid "Ginger is currently"
+msgstr "Ginger è attualmente"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:8
+msgid "enabled"
+msgstr "abilitato"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:8
+msgid "disabled"
+msgstr "disabilitato"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:14
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:15
+msgid "Enable Ginger"
+msgstr "Abilita Ginger"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:16
+msgid "Enabled"
+msgstr "Abilitato"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:17
+msgid "Disabled"
+msgstr "Disabilitato"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:23
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:24
+msgid "Choose Banner Type"
+msgstr "Scegli il tipo di banner"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:26
+msgid "Bar"
+msgstr "Barra"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:27
+msgid "Dialog"
+msgstr ""
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:32
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:33
+msgid "Do you have a cache system?"
+msgstr "Hai un sistema di cache"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:34
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:58
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:71
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:87
+msgid "Yes"
+msgstr "Si"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:35
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:59
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:73
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:89
+msgid "No"
+msgstr "No"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:40
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:41
+msgid "Cookie Confirmation Type"
+msgstr "Tipo di conferma dei cookie"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:42
+msgid "Opt-In"
+msgstr ""
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:42
+msgid "Cookies are disabled until banner is accepted"
+msgstr "I cookie sono disabilitati finchè il banner non è accettato"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:43
+msgid "Opt-Out"
+msgstr ""
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:43
+msgid "Cookies are disabled only if explicitly requested"
+msgstr "I cookie sono disabilitati solo se esplicitamente richiesto"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:48
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:49
+msgid "Let scroll to confirm"
+msgstr "Scrolla per confermare"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:50
+msgid "Scroll to accept cookie"
+msgstr "Scrolla per accettare i cookie"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:51
+msgid "Keep banner after scroll"
+msgstr "Non abilitare i cookie con lo scroll"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:56
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:57
+msgid "Click out of banner to accept cookie"
+msgstr "Clicca fuori dal banner per accettare i cookie"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:46
+msgid "Customize your banner buttons"
+msgstr "Personalizza i tuoi Bunner Buttons"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:50
+msgid "Accept cookie Button"
+msgstr "Button Accetta Cookie"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:57
+msgid "Accept Cookie"
+msgstr "Accetta Cookie"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:61
+msgid "Disable cookie Button"
+msgstr "Button Disabilita Cookie "
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:68
+msgid "Disable Cookie"
+msgstr "Disabilita Cookie"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:70
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:86
+msgid "Enable:"
+msgstr "Abilita:"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:78
+msgid "Read More Button"
+msgstr "Button Read More "
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:85
+msgid "Read More"
+msgstr "Read More"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:96
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:97
+msgid "Choose Ginger Theme"
+msgstr "Scegli il tema Ginger"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:98
+msgid "Light Theme"
+msgstr "Light Theme"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:99
+msgid "Dark Theme"
+msgstr "Dark Theme"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:104
+msgid "Customize your Ginger theme"
+msgstr "Personalizza il tuo tema Ginger"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:127
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:128
+msgid "Button"
+msgstr "Button"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/dialog.php:8
+msgid "Banner Dialog Setup"
+msgstr "Banner Dialog Setup"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/dialog.php:15
+msgid "Dialog Text"
+msgstr "Testo Dialog "
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/dialog.php:16
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/policy.php:18
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/policy.php:79
+msgid "DialogText"
+msgstr "Testo Dialog "
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/policy.php:8
+msgid "Privacy Policy Setup"
+msgstr "Privacy Policy Setup"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/policy.php:15
+msgid "Select your privacy policy page"
+msgstr "Seleziona la tua pagina privacy policy"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/policy.php:68
+msgid "or create your privacy policy page"
+msgstr "oppure crea la tua pagina privacy policy "
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/policy.php:73
+msgid "Title"
+msgstr "Titolo"
