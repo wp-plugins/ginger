@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: manafactory, webgrafia, matteobarale
-Tags: EU Cookie Law, cookie law, cookie block, block cookie, cookie consent, cookie law, cookie policy, privacy policy, cookie banner, italian cookie law, cookie italia
+Tags: EU Cookie Law, cookie law, block cookie, cookie consent, cookie law, cookie policy, privacy policy, cookie banner, italian cookie law, cookie italia
 Requires at least: 3.0.1
 Tested up to: 4.4.2
 Stable tag: 1.0
