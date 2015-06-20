@@ -1,28 +1,27 @@
 === Plugin Name ===
 Contributors: manafactory, webgrafia, matteobarale
-Tags: EU Cookie Law, cookie law, cookie block, block cookie, cookie consent, cookie law, cookie policy, privacy policy, cookie banner, italian cookie law
+Tags: EU Cookie Law, cookie law, block cookie, cookie consent, cookie law, cookie policy, privacy policy, cookie banner, italian cookie law, cookie italia
 Requires at least: 3.0.1
 Tested up to: 4.4.2
-Stable tag: 1.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Ginger allows to show a configurable banner and block the most common third party cookies to comply with European Cookie Laws.
-
+Ginger allows to show a configurable banner and blocks the most common third party cookies complying with European Cookie Laws.
 == Description ==
 
-Ginger allows to show a configurable banner and block the most common third party cookies to comply with European Cookie Laws.
-It work with opt-in to opt-out mode, to be compliant with all EU implementation.
+Ginger allows to show a configurable banner and blocks the most common third party cookies complying with European Cookie Laws.
+It works in opt-in 0r opt-out mode, in order to be compliant with all EU implementation.
 
-Plug'n play, it work without implementation in theme or plugins files.
+Plug’n' play, it doesn’t need customization of theme or plugins files.
 
 Features:
 
-*   Banner configurable in style, colors, type and position
+*   Position, style, colour, type and banner configurable
 *   Opt-in or Opt-out mode
-*   Compliant with all cache systems
-*   Block javascript and iframe
-*   Lock iframe also with javascript disabled
+*   All caching systems compliant
+*   Javascript and iframe block
+*   iframe lock if javascript disabled
 
 
 == Installation ==
@@ -57,3 +56,6 @@ No, you can be safe from plugins conflict, is developed using Cookies Enabler Js
 
 = 1.0 =
 * First stable release.
+
+= 1.0.1 =
+* Uninstall file
