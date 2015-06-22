@@ -10,7 +10,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Ginger allows to show a configurable banner and blocks the most common third party cookies complying with European Cookie Laws.
 == Description ==
 
-The aim of Ginger is to be a complete plug'n play solution that make your website compliant with EU Cookie law.
+The aim of Ginger is to be a **complete plug'n play solution** that make your website compliant with EU Cookie law.
 
 = Features: =
 * really **plug'n play**: simply activate, and enjoy
