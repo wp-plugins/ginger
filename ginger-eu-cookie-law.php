@@ -3,7 +3,7 @@
 Plugin Name: Ginger - EU Cookie Law
 Plugin URI: http://manafactory.it/
 Description: Make your website compliant with EU Cookie Policy.
-Version: 1.0
+Version: 1.1
 Author: Manafactory
 Author URI: http://manafactory.it/
 License: GPLv2 or later
