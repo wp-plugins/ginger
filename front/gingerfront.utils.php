@@ -36,6 +36,12 @@ function ginger_scirpt(){ ?>
     else:
         $click_outside = 'false';
     endif;
+    //Verifico se è abilitato il forceReload
+    if($option_ginger_general['ginger_force_reload'] == 1):
+        $ginger_force_reload = 'true';
+    else:
+        $ginger_force_reload = 'false';
+    endif;
     //Recupero le impostazioni per il banner
     //Testo Banner
     if($option_ginger_bar['ginger_banner_text']):
@@ -127,11 +133,27 @@ function ginger_scirpt(){ ?>
                 <?php endif; ?>
                 + '<\/div>'
                 + '<\/div>',
+            <?php if($option_ginger_bar['disable_cookie_button_status'] != 0 && $option_ginger_general['ginger_opt'] != 'out' && $option_ginger_general['ginger_keep_banner'] == 1): ?>
+            forceEnable: true,
+            forceBannerClass: 'ginger-banner bottom dialog force <?php echo $option_ginger_bar['theme_ginger']; ?>',
+            forceEnableText:
+                '<p>'
+                + '<?php echo $ginger_text; ?>'
+                + '<\/p>'
+                + '<div class="ginger-button-wrapper">'
+                + '<div class="ginger-button">'
+                + '<a href="#" class="ginger-accept">'
+                + '<?php echo $label_accept_cookie; ?>'
+                + '<\/a>'
+                + '<\/div>'
+                + '<\/div>',
+            <?php endif; ?>
             eventScroll: <?php echo $type_scroll; ?>,
             scrollOffset: 20,
             clickOutside: <?php echo $click_outside; ?>,
             cookieName: 'ginger-cookie',
             cookieDuration: '365',
+            forceReload: <?php echo $ginger_force_reload; ?>,
             iframesPlaceholder: true,
             iframesPlaceholderClass: 'ginger-iframe-placeholder',
             iframesPlaceholderHTML:
@@ -139,13 +161,7 @@ function ginger_scirpt(){ ?>
                     document.getElementById('ginger-iframePlaceholder-html').innerHTML :
                 '<p><?php echo $ginger_iframe_text;  ?>'
                 +'<a href="#" class="ginger-accept"><?php echo $label_accept_cookie; ?></a>'
-                +'<\/p>',
-            onEnable: function(){
-                //console.log('enable callback');
-            },
-            onDismiss: function(){
-                //console.log('dismiss callback');
-            }
+                +'<\/p>'
         });
     </script>
     <!-- End Ginger Script -->
@@ -200,7 +216,8 @@ function ginger_parse_dom($output){
         'assets.pinterest.com',
         'www.youtube.com/iframe_api',
         'www.google-analytics.com/analytics.js',
-        'google-analytics.com/ga.js'
+        'google-analytics.com/ga.js',
+        'maps.googleapis.com'
     );
     do_action('ginger_add_scripts');
 
@@ -215,10 +232,8 @@ function ginger_parse_dom($output){
 
     libxml_use_internal_errors(true);
     $doc = new DOMDocument();
-
-    // load the HTML string we want to strip
-    $doc->loadHTML($output);
-
+    $doc->encoding = 'utf-8';
+    $doc->loadHTML(mb_convert_encoding($output, 'HTML-ENTITIES', 'UTF-8'));
     // get all the script tags
     $script_tags = $doc->getElementsByTagName('script');
 
@@ -255,7 +270,7 @@ function ginger_parse_dom($output){
         endif;
     endforeach;
     // get the HTML string back
-    $output = $doc->saveHTML();
+    $output = $doc->saveHTML($doc->documentElement);
     libxml_use_internal_errors(false);
  return $output;
 }

@@ -1,11 +1,3 @@
-(function( $ ) {
-
-    // Add Color Picker to all inputs that have 'color-field' class
-    $(function() {
-        $('.color-field').wpColorPicker();
-    });
-
-})( jQuery );
 
 function select_privacy_page(){
 
@@ -31,4 +23,22 @@ function enable_text_banner_button(id){
     document.getElementById(id).disabled=false;
     document.getElementById('new_page_privacy').style.display='inline';
     document.getElementById('new_page_privacy').style.display='inline';
+}
+
+function en_dis_able_text_banner_button(id,id_text,id_img){
+
+    var status=document.getElementById(id).checked;
+
+
+    if (status){
+
+        document.getElementById(id_text).disabled=false;
+        document.getElementById(id_img).src='../wp-content/plugins/ginger/img/ok.png';
+
+    }else if (!status){
+
+        document.getElementById(id_text).disabled=true;
+        document.getElementById(id_img).src='../wp-content/plugins/ginger/img/xx.png';
+                }
+
 }

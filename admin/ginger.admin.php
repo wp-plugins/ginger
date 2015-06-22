@@ -12,21 +12,56 @@ if(isset($_POST["submit"])){
     unset($params["submit"]);
     unset($params["ginger_options"]);
     unset($params["_wp_http_referer"]);
-    if ($key=='ginger_policy'){
-        if ($_POST["choice"]=="new_page"){
-	        $id_privacy_new_page=save_privacy_page($_POST["privacy_page_title"],$_POST["privacy_page_content"]);
-            $privacy_page_id=$id_privacy_new_page;
-        }else{
-            $privacy_page_id=$_POST["ginger_privacy_page"];
-        }
-        update_option($key, $privacy_page_id);
-    }else{
-        update_option($key, $params);
+
+if ($key=='ginger_banner'){
+    if ($params["disable_cookie_button_status"]!='1'){
+        $params["disable_cookie_button_status"]='0';
+
     }
+    if ($params["read_more_button_status"]!='1'){
+        $params["read_more_button_status"]='0';
+    }
+
+
+}
+
+
+        if ($key=='ginger_policy'){
+            if ($_POST["choice"]=="new_page"){
+
+                    // controllo se il nome della privacy page è già esistente.
+                if (get_page_by_title( $_POST["privacy_page_title"], $output, 'page' )){
+
+                    $control_page=get_page_by_title( $_POST["privacy_page_title"], $output, 'page' );
+                    if ($control_page->post_status=='publish') {
+                        $control_page_id = $control_page->ID;
+                        $privacy_page_id = $control_page_id;
+                        echo '<div class="updated"><p>'.__( 'The page with the specified title already exists and is your current privacy policy page!', 'ginger' ).'</p></div>';
+
+                    }else{
+
+                        $id_privacy_new_page=save_privacy_page($_POST["privacy_page_title"],$_POST["privacy_page_content"]);
+                        $privacy_page_id=$id_privacy_new_page;
+                    }
+
+
+                }else{
+                $id_privacy_new_page=save_privacy_page($_POST["privacy_page_title"],$_POST["privacy_page_content"]);
+                $privacy_page_id=$id_privacy_new_page;
+                }
+
+            }else{
+                $privacy_page_id=$_POST["ginger_privacy_page"];
+            }
+            update_option($key, $privacy_page_id);
+        }else{
+            update_option($key, $params);
+        }
     echo '<div class="updated"><p>'.__( 'Updated!', 'ginger' ).'</p></div>';
 }
 
-$options = get_option($key); ?>
+$options = get_option($key);
+?>
 
 <div class="wrap">
    <h2>Ginger - EU Cookie Law</h2>

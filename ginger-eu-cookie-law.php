@@ -9,11 +9,15 @@ Author URI: http://manafactory.it/
 License: GPLv2 or later
 Text Domain: ginger
 */
+
+if ( !defined('ABSPATH')) exit;
+
 load_plugin_textdomain( 'ginger', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
 //Gestione Backend
 if(is_admin()){
     require_once("admin/ginger.utils.php");
+    require_once("admin/ginger.pointer.php");
 }
 //Gestione Frontend
 if(!is_admin()){
@@ -21,3 +25,4 @@ if(!is_admin()){
 }
 
 register_activation_hook( __FILE__, 'ginger_plugin_activate' );
+

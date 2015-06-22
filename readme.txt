@@ -3,7 +3,7 @@ Contributors: manafactory, webgrafia, matteobarale
 Tags: EU Cookie Law, cookie law, block cookie, cookie consent, cookie law, cookie policy, privacy policy, cookie banner, italian cookie law, cookie italia
 Requires at least: 3.0.1
 Tested up to: 4.4.2
-Stable tag: 1.0.1
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -11,9 +11,9 @@ Ginger allows to show a configurable banner and blocks the most common third par
 == Description ==
 
 Ginger allows to show a configurable banner and blocks the most common third party cookies complying with European Cookie Laws.
-It works in opt-in 0r opt-out mode, in order to be compliant with all EU implementation.
+It works in opt-in or opt-out mode, in order to be compliant with all EU implementation.
 
-Plug’n' play, it doesn’t need customization of theme or plugins files.
+**Plug’n' play**, it doesn’t need customization of theme or plugins files.
 
 Features:
 
@@ -22,6 +22,8 @@ Features:
 *   All caching systems compliant
 *   Javascript and iframe block
 *   iframe lock if javascript disabled
+
+**Send us [suggestions or bug report](https://wordpress.org/support/plugin/ginger)!**
 
 
 == Installation ==
@@ -32,17 +34,17 @@ Features:
 
 == Frequently Asked Questions ==
 
-= Do I need of coding theme or plugins? =
+= Do I need to code themes or plugins? =
 
-Absolutely not. Is really plug'n play
+Absolutely not. It's really plug'n play
 
-= It block Cookies before esplicitly accepted by user? =
+= Does it block cookies before they’re explicitly accepted by user? =
 
 Sure, you can choose opt-in or opt-out mode to let it work as you wish.
 
-= It use jQuery? =
+= Does it use jQuery? =
 
-No, you can be safe from plugins conflict, is developed using Cookies Enabler Js Library developed by Nicholas Ruggeri:  https://github.com/nicholasruggeri/cookies-enabler
+No, you can be safe from plugins conflict. It's been developed using Cookies Enabler Js Library developed by Nicholas Ruggeri:  https://github.com/nicholasruggeri/cookies-enabler
 
 
 == Screenshots ==
@@ -55,7 +57,15 @@ No, you can be safe from plugins conflict, is developed using Cookies Enabler Js
 == Changelog ==
 
 = 1.0 =
-* First stable release.
+* First stable release
 
 = 1.0.1 =
-* Uninstall file
+* Clean uninstall
+
+= 1.1 =
+* fix encoding
+* activation with default options
+* added refresh option
+* fixed wp 3.0 compatibility
+* fix italian translations
+* admin pointer

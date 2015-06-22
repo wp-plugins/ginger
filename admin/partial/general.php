@@ -110,6 +110,47 @@
                     </fieldset>
                 </td>
             </tr>
+            <tr>
+                <th scope="row" style="padding-left:20px;"><?php _e("Force reload page", "ginger"); ?></th>
+                <td>
+                    <fieldset>
+                        <legend class="screen-reader-text">
+                            <span><?php _e("Force reload page", "ginger"); ?></span>
+                        </legend>
+                        <p>
+                            <label>
+                                <input name="ginger_force_reload" type="radio" value="1" class="tog" <?php if($options["ginger_force_reload"] == "1") echo ' checked="checked" '; ?>><?php _e("Yes", "ginger"); ?>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input name="ginger_force_reload" type="radio" value="0" class="tog" <?php if($options["ginger_force_reload"] == "0") echo ' checked="checked" '; ?>><?php _e("No", "ginger"); ?>
+                            </label>
+                        </p>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" style="padding-left:20px;"><?php _e("Keep banner until acceptance", "ginger"); ?></th>
+                <td>
+                    <fieldset>
+                        <legend class="screen-reader-text">
+                            <span><?php _e("Keep banner until acceptance", "ginger"); ?></span>
+                        </legend>
+                        <p>
+                            <label>
+                                <input name="ginger_keep_banner" type="radio" value="1" class="tog" <?php if($options["ginger_keep_banner"] == "1") echo ' checked="checked" '; ?>><?php _e("Yes", "ginger"); ?>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input name="ginger_keep_banner" type="radio" value="0" class="tog" <?php if($options["ginger_keep_banner"] == "0") echo ' checked="checked" '; ?>><?php _e("No", "ginger"); ?>
+                            </label>
+                        </p>
+                    </fieldset>
+                </td>
+            </tr>
+
         </tbody>
     </table>
 
