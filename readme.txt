@@ -10,18 +10,30 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Ginger allows to show a configurable banner and blocks the most common third party cookies complying with European Cookie Laws.
 == Description ==
 
-Ginger allows to show a configurable banner and blocks the most common third party cookies complying with European Cookie Laws.
-It works in opt-in or opt-out mode, in order to be compliant with all EU implementation.
-
-**Plug’n' play**, it doesn’t need customization of theme or plugins files.
+The aim of Ginger is to be a complete plug'n play solution that make your website compliant with EU Cookie law.
 
 Features:
+*   **plug'n play**: simply activate, and enjoy
+*   complete **banner** configuration: style, position and colors
+*   **Opt-in** mode enabler: block cookies BEFORE user acceptance (fit for **Italy** regulation)
+*   Google Analytics **anonimyzer**
+*   Complatible with server **caching**
 
-*   Position, style, colour, type and banner configurable
-*   Opt-in or Opt-out mode
-*   All caching systems compliant
-*   Javascript and iframe block
-*   iframe lock if javascript disabled
+
+Actually Supported:
+*   twitter
+*   facebook
+*   linkedin
+*   pinterest
+*   google +
+*   google analytics
+*   google maps
+*   youtube
+
+Coming soon:
+*   **WML** support
+*   **adSense** extension
+
 
 **Send us [suggestions or bug report](https://wordpress.org/support/plugin/ginger)!**
 
@@ -56,12 +68,6 @@ No, you can be safe from plugins conflict. It's been developed using Cookies Ena
 
 == Changelog ==
 
-= 1.0 =
-* First stable release
-
-= 1.0.1 =
-* Clean uninstall
-
 = 1.1 =
 * fix encoding
 * activation with default options
@@ -69,3 +75,9 @@ No, you can be safe from plugins conflict. It's been developed using Cookies Ena
 * fixed wp 3.0 compatibility
 * fix italian translations
 * admin pointer
+
+= 1.0.1 =
+* Clean uninstall
+
+= 1.0 =
+* First stable release
