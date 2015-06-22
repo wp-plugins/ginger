@@ -20,7 +20,7 @@ The aim of Ginger is to be a complete plug'n play solution that make your websit
 * Complatible with server **caching**
 
 
-= Actually Supported: =
+= Actually Support: =
 * twitter
 * facebook
 * linkedin
