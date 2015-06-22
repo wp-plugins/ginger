@@ -12,8 +12,7 @@ Ginger allows to show a configurable banner and blocks the most common third par
 
 The aim of Ginger is to be a complete plug'n play solution that make your website compliant with EU Cookie law.
 
-Features:
-
+= Features: =
 * really **plug'n play**: simply activate, and enjoy
 * complete **banner** configuration: style, position and colors
 * **Opt-in** mode enabler: block cookies BEFORE user acceptance (fit for **Italy** regulation)
@@ -21,8 +20,7 @@ Features:
 * Complatible with server **caching**
 
 
-Actually Supported:
-
+= Actually Supported: =
 * twitter
 * facebook
 * linkedin
@@ -32,8 +30,7 @@ Actually Supported:
 * google maps
 * youtube
 
-Coming soon:
-
+= Coming soon: =
 * **WML** support
 * **adSense** extension
 
