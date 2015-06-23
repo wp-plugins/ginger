@@ -14,8 +14,14 @@ add_action( 'wp_enqueue_scripts', 'ginger_style_script' );
  * Register style sheet.
  */
 function ginger_style_script() {
-    wp_register_style( 'ginger-style', plugin_dir_url( __FILE__ ) . 'css/cookies-enabler.css' );
-    wp_enqueue_style( 'ginger-style' );
+    $option_ginger_bar = get_option('ginger_banner');
+    if($_COOKIE['ginger-cookie'] && $_COOKIE['ginger-cookie'] == 'N' || $option_ginger_bar['ginger_banner_type'] == 'dialog'):
+        wp_register_style( 'ginger-style-dialog', plugin_dir_url( __FILE__ ) . 'css/cookies-enabler-dialog.css' );
+        wp_enqueue_style( 'ginger-style-dialog' );
+    else:
+        wp_register_style( 'ginger-style', plugin_dir_url( __FILE__ ) . 'css/cookies-enabler.css' );
+        wp_enqueue_style( 'ginger-style' );
+    endif;
 }
 
 function ginger_scirpt(){ ?>
@@ -46,11 +52,12 @@ function ginger_scirpt(){ ?>
     //Testo Banner
     if($option_ginger_bar['ginger_banner_text']):
         $ginger_text = $option_ginger_bar['ginger_banner_text'];
+        $ginger_text = str_replace('</', '<\/', $ginger_text);
         //Recupero privacy policy se presente
         if(strpos($ginger_text, '{{privacy_page}}') !== false):
             $privacy_policy = get_option('ginger_policy', true);
             $privacy_policy = get_post($privacy_policy);
-            $privacy_policy = ' <a href="' . get_permalink($privacy_policy->ID) . '">' . $privacy_policy->post_title . '</a>';
+            $privacy_policy = ' <a href="' . get_permalink($privacy_policy->ID) . '">' . $privacy_policy->post_title . '<\/a>';
             $ginger_text = str_replace('{{privacy_page}}', $privacy_policy, $ginger_text);
         endif;
 
@@ -66,11 +73,10 @@ function ginger_scirpt(){ ?>
     if($option_ginger_bar['ginger_banner_type'] == 'dialog'):
         $banner_class .= ' dialog';
     endif;
-    if($option_ginger_bar['ginger_banner_type'] == 'dialog'):
-        $banner_class .= ' dialog';
-    endif;
     if($option_ginger_bar['theme_ginger'] == 'dark'):
         $banner_class .= ' dark';
+    else:
+        $banner_class .= ' light';
     endif;
     //Recupero Testo Iframe
     if($option_ginger_bar['ginger_Iframe_text']):
@@ -91,16 +97,29 @@ function ginger_scirpt(){ ?>
         $label_disable_cookie = __('Disable Cookies', 'ginger');
     endif;
     //Recupero style custom
-    if($option_ginger_bar['background_color'] || $option_ginger_bar['text_color'] ||$option_ginger_bar['link_color'] ): ?>
+    if($option_ginger_bar['background_color'] || $option_ginger_bar['text_color'] || $option_ginger_bar['link_color'] || $option_ginger_bar['ginger_css'] ): ?>
     <style>
-        .ginger-banner{
+        .ginger_container.<?php echo $option_ginger_bar['theme_ginger']; ?>{
             <?php if($option_ginger_bar['background_color']): ?> background-color: <?php echo $option_ginger_bar['background_color']; ?>;<?php endif; ?>
             <?php if($option_ginger_bar['text_color']): ?> color: <?php echo $option_ginger_bar['text_color']; ?>;<?php endif; ?>
         }
+        <?php if($option_ginger_bar['button_color']): ?>
+        .ginger_btn.ginger-accept, .ginger_btn.ginger-dismiss, .ginger_btn.ginger-disable{
+             background: <?php echo $option_ginger_bar['button_color']; ?>;
+        }
+        <?php endif; ?>
+        <?php if($option_ginger_bar['button_text_color']): ?>
+        .ginger_banner-wrapper > div > a.ginger_btn {
+            color: <?php echo $option_ginger_bar['button_text_color']; ?> !important;
+        }
+        <?php endif; ?>
         <?php if($option_ginger_bar['link_color']): ?>
-        .ginger-banner a{
+        .ginger_container.<?php echo $option_ginger_bar['theme_ginger']; ?> a{
             <?php if($option_ginger_bar['link_color']): ?> color: <?php echo $option_ginger_bar['link_color']; ?>;<?php endif; ?>
         }
+        <?php endif;?>
+        <?php if($option_ginger_bar['ginger_css']): ?>
+            <?php echo $option_ginger_bar['ginger_css']; ?>
         <?php endif;?>
     </style>
     <?php endif;?>
@@ -114,45 +133,55 @@ function ginger_scirpt(){ ?>
             acceptClass: 'ginger-accept',
             disableClass: 'ginger-disable',
             dismissClass: 'ginger-dismiss',
-            bannerClass: 'ginger-banner <?php echo $banner_class; ?>',
+            bannerClass: 'ginger_banner-wrapper',
             bannerHTML:
                 document.getElementById('ginger-banner-html') !== null ?
                     document.getElementById('ginger-banner-html').innerHTML :
-                '<p>'
-                + '<?php echo $ginger_text; ?>'
-                + '<\/p>'
-                + '<div class="ginger-button-wrapper">'
-                + '<div class="ginger-button">'
-                + '<a href="#" class="ginger-accept">'
-                + '<?php echo $label_accept_cookie; ?>'
-                + '<\/a>'
-                <?php if($option_ginger_bar['disable_cookie_button_status'] != 0 && $option_ginger_general['ginger_opt'] != 'out'): ?>
-                + '<a href="#" class="ginger-disable">'
-                + '<?php echo $label_disable_cookie; ?>'
-                + '<\/a>'
-                <?php endif; ?>
-                + '<\/div>'
-                + '<\/div>',
+                    '<div class="ginger_banner <?php echo $banner_class; ?> ginger_container ginger_container--open">'
+                    <?php if($option_ginger_bar['ginger_banner_type'] == 'dialog'): ?>
+                        +'<p class="ginger_message">'
+                        +'<?php echo $ginger_text; ?>'
+                        +'</p>'
+                        +'<a href="#" class="ginger_btn ginger-accept ginger_btn_accept_all">'
+                        + '<?php echo $label_accept_cookie; ?>'
+                        +'<\/a>'
+                        <?php if($option_ginger_bar['disable_cookie_button_status'] != 0 && $option_ginger_general['ginger_opt'] != 'out'): ?>
+                        + '<a href="#" class="ginger_btn ginger-disable ginger_btn_accept_all">'
+                        + '<?php echo $label_disable_cookie; ?>'
+                        + '<\/a>'
+                        <?php endif; ?>
+                    <?php else: ?>
+                        <?php if($option_ginger_bar['disable_cookie_button_status'] != 0 && $option_ginger_general['ginger_opt'] != 'out'): ?>
+                        + '<a href="#" class="ginger_btn ginger-disable ginger_btn_accept_all">'
+                        + '<?php echo $label_disable_cookie; ?>'
+                        + '<\/a>'
+                        <?php endif; ?>
+                        +'<a href="#" class="ginger_btn ginger-accept ginger_btn_accept_all">'
+                        + '<?php echo $label_accept_cookie; ?>'
+                        +'<\/a>'
+                        +'<p class="ginger_message">'
+                        +'<?php echo $ginger_text; ?>'
+                        +'</p>'
+                    <?php endif; ?>
+                    +'<\/div>',
             <?php if($option_ginger_bar['disable_cookie_button_status'] != 0 && $option_ginger_general['ginger_opt'] != 'out' && $option_ginger_general['ginger_keep_banner'] == 1): ?>
             forceEnable: true,
-            forceBannerClass: 'ginger-banner bottom dialog force <?php echo $option_ginger_bar['theme_ginger']; ?>',
+            forceBannerClass: 'ginger-banner bottom dialog force <?php echo $option_ginger_bar['theme_ginger']; ?> ginger_container',
             forceEnableText:
-                '<p>'
-                + '<?php echo $ginger_text; ?>'
-                + '<\/p>'
-                + '<div class="ginger-button-wrapper">'
-                + '<div class="ginger-button">'
-                + '<a href="#" class="ginger-accept">'
+                '<p class="ginger_message">'
+                +'<?php echo $ginger_text; ?>'
+                +'</p>'
+                +'<a href="#" class="ginger_btn ginger-accept ginger_btn_accept_all">'
                 + '<?php echo $label_accept_cookie; ?>'
-                + '<\/a>'
-                + '<\/div>'
-                + '<\/div>',
+                +'<\/a>',
+            <?php endif; ?>
+            <?php if($option_ginger_general['ginger_cookie_duration']): ?>
+            cookieDuration: <?php echo $option_ginger_general['ginger_cookie_duration']; ?>,
             <?php endif; ?>
             eventScroll: <?php echo $type_scroll; ?>,
             scrollOffset: 20,
             clickOutside: <?php echo $click_outside; ?>,
             cookieName: 'ginger-cookie',
-            cookieDuration: '365',
             forceReload: <?php echo $ginger_force_reload; ?>,
             iframesPlaceholder: true,
             iframesPlaceholderClass: 'ginger-iframe-placeholder',
@@ -160,7 +189,7 @@ function ginger_scirpt(){ ?>
                 document.getElementById('ginger-iframePlaceholder-html') !== null ?
                     document.getElementById('ginger-iframePlaceholder-html').innerHTML :
                 '<p><?php echo $ginger_iframe_text;  ?>'
-                +'<a href="#" class="ginger-accept"><?php echo $label_accept_cookie; ?></a>'
+                +'<a href="#" class="ginger_btn ginger-accept"><?php echo $label_accept_cookie; ?></a>'
                 +'<\/p>'
         });
     </script>
@@ -226,7 +255,8 @@ function ginger_parse_dom($output){
         'platform.twitter.com',
         'www.facebook.com/plugins/like.php',
         'apis.google.com',
-        'www.google.com/maps/embed/'
+        'www.google.com/maps/embed/',
+        'player.vimeo.com'
     );
     do_action('ginger_add_iframe');
 

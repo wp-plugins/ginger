@@ -194,12 +194,23 @@
             </fieldset>
         </td>
     </tr>
+
     <tr>
         <th scope="row" style="padding-left:20px;"><?php _e("Button", "ginger"); ?></th>
         <td>
             <fieldset>
                 <legend class="screen-reader-text"><span><?php _e("Button", "ginger"); ?></span></legend>
                 <p><label><input type="text" name="button_color" value="<?php echo $options["button_color"]; ?>"
+                                 class="color-field"></label></p>
+            </fieldset>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row" style="padding-left:20px;"><?php _e("Button Text Color", "ginger"); ?></th>
+        <td>
+            <fieldset>
+                <legend class="screen-reader-text"><span><?php _e("Button Text Color", "ginger"); ?></span></legend>
+                <p><label><input type="text" name="button_text_color" value="<?php echo $options["button_text_color"]; ?>"
                                  class="color-field"></label></p>
             </fieldset>
         </td>
@@ -214,5 +225,36 @@
             </fieldset>
         </td>
     </tr>
+    <tr>
+        <td colspan="2">
+            <h2><?php _e("Custom CSS", "ginger"); ?></h2>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row" style="padding-left:20px;"><?php _e("Insert here your banner custom CSS", "ginger"); ?></th>
+        <td>
+            <fieldset>
+                <legend class="screen-reader-text"><span><?php _e("Insert here your banner custom CSS", "ginger"); ?></span></legend>
+                <p>
+                    <label>
+                        <textarea name = "ginger_css" cols="100" rows="6" class="lined"><?php echo $options["ginger_css"];?></textarea>
+
+                    </label>
+                </p>
+            </fieldset>
+        </td>
+    </tr>
     </tbody>
 </table>
+
+
+<script src="<?php echo plugins_url('/ginger/admin/js/jquery_lined_textarea/jquery-linedtextarea.js')?>"></script>
+<link href="<?php echo plugins_url('/ginger/admin/js/jquery_lined_textarea/jquery-linedtextarea.css')?>" type="text/css" rel="stylesheet" />
+
+<script>
+    jQuery(function() {
+        jQuery(".lined").linedtextarea(
+            {selectedLine: 1}
+        );
+    });
+</script>

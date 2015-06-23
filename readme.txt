@@ -3,7 +3,7 @@ Contributors: manafactory, webgrafia, matteobarale
 Tags: EU Cookie Law, cookie law, block cookie, cookie consent, cookie law, cookie policy, privacy policy, cookie banner, italian cookie law, cookie italia
 Requires at least: 3.0.1
 Tested up to: 4.4.2
-Stable tag: 1.1
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,7 @@ The aim of Ginger is to be a **complete plug'n play solution** that make your we
 * really **plug'n play**: simply activate, and enjoy
 * complete **banner** configuration: style, position and colors
 * **Opt-in** mode enabler: block cookies BEFORE user acceptance (fit for **Italy** regulation)
-* Google Analytics **anonimyzer**
+* Exclude Google Analytics cookie if not **anonimyzed**
 * Complatible with server **caching**
 
 
@@ -29,6 +29,7 @@ The aim of Ginger is to be a **complete plug'n play solution** that make your we
 * google analytics
 * google maps
 * youtube
+* vimeo
 
 = Coming soon: =
 * **WML** support
@@ -67,6 +68,13 @@ No, you can be safe from plugins conflict. It's been developed using Cookies Ena
 4. Front-end example of light banner in footer, with iframe locked before approvation in opt-in mode
 
 == Changelog ==
+
+= 1.1.1 =
+* fix style banner
+* cookie expire time
+* css custom
+* vimeo support
+* minor fix on label and translation
 
 = 1.1 =
 * fix encoding

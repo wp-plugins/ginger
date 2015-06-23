@@ -43,6 +43,11 @@
                                 <input name="ginger_cache" type="radio" value="no" class="tog" <?php if($options["ginger_cache"] == "no") echo ' checked="checked" '; ?>><?php _e("No", "ginger"); ?>
                             </label>
                         </p>
+                        <p>
+                            <small style="padding-top: 20px">
+                                <i>(<?php _e("If you have a caching system (W3TC, Varnish, WP Super Cash...) choose YES. Ginger will optimize websites performances", "ginger"); ?>)</i>
+                            </small>
+                        </p>
                     </fieldset>
                 </td>
             </tr>
@@ -67,7 +72,13 @@
                                 (<?php _e("Cookies are disabled only if explicitly requested", "ginger"); ?>)
                             </small>
                         </p>
+                        <p>
+                            <small style="padding-top: 20px">
+                                <i>(<?php _e("Choose OPT-IN if you're in Italy", "ginger"); ?>)</i>
+                            </small>
+                        </p>
                     </fieldset>
+
                 </td>
             </tr>
             <tr>
@@ -131,7 +142,7 @@
                 </td>
             </tr>
             <tr>
-                <th scope="row" style="padding-left:20px;"><?php _e("Keep banner until acceptance", "ginger"); ?></th>
+                <th scope="row" style="padding-left:20px;"><?php _e("Stress Mode", "ginger"); ?></th>
                 <td>
                     <fieldset>
                         <legend class="screen-reader-text">
@@ -147,6 +158,32 @@
                                 <input name="ginger_keep_banner" type="radio" value="0" class="tog" <?php if($options["ginger_keep_banner"] == "0") echo ' checked="checked" '; ?>><?php _e("No", "ginger"); ?>
                             </label>
                         </p>
+                        <p>
+                            <small style="padding-top: 20px">
+                                <i>(<?php _e("If cookies are not accepted the banner will continues to be shown minimized", "ginger"); ?>)</i>
+                            </small>
+                        </p>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" style="padding-left:20px;"><?php _e("Cookies Duration", "ginger"); ?></th>
+                <td>
+                    <fieldset>
+                        <legend class="screen-reader-text">
+                            <span><?php _e("Select cookies duration", "ginger"); ?></span>
+                        </legend>
+                        <p>
+                            <label><?php _e("Select cookies duration", "ginger"); ?></label>
+                            <select name="ginger_cookie_duration">
+                                <option value=""><?php _e('Select', 'ginger')?></option>
+                                <option value="1" <?php if ($options['ginger_cookie_duration']=='1'){echo 'selected';}?>><?php _e('1 Day', 'ginger')?></option>
+                                <option value="30" <?php if ($options['ginger_cookie_duration']=='30'){echo 'selected';}?>><?php _e('1 Month', 'ginger')?></option>
+                                <option value="365" <?php if ($options['ginger_cookie_duration']=='365'){echo 'selected';}?>><?php _e('1 Year', 'ginger')?></option>
+                                <option value="365000" <?php if ($options['ginger_cookie_duration']=='365000'){echo 'selected';}?>><?php _e('For ever', 'ginger')?></option>
+                            </select>
+                        </p>
+
                     </fieldset>
                 </td>
             </tr>

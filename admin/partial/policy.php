@@ -106,6 +106,11 @@
                             </fieldset>
                         </label>
                     </p>
+                    <p>
+                        <small style="padding-top: 20px">
+                            <b>(<?php _e("If you create a new page this will be setted as Privacy Policy Page", "ginger"); ?>)</b>
+                        </small>
+                    </p>
                 </div>
         </td>
     </tr>

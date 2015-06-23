@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: _s 1.0.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2015-06-22 17:28+0100\n"
-"PO-Revision-Date: 2015-06-22 17:33+0100\n"
+"POT-Creation-Date: 2015-06-23 14:24+0100\n"
+"PO-Revision-Date: 2015-06-23 14:24+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: it_IT\n"
@@ -19,11 +19,11 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: /var/www/sitolocale/wp-content/plugins/ginger\n"
 
-#: /var/www/sitolocale/wp-content/plugins/ginger/front/gingerfront.utils.php:79
+#: /var/www/sitolocale/wp-content/plugins/ginger/front/gingerfront.utils.php:85
 msgid "Enable Cookies"
 msgstr "Abilita Cookies"
 
-#: /var/www/sitolocale/wp-content/plugins/ginger/front/gingerfront.utils.php:85
+#: /var/www/sitolocale/wp-content/plugins/ginger/front/gingerfront.utils.php:91
 msgid "Disable Cookies"
 msgstr "Disabilita Cookies"
 
@@ -56,7 +56,7 @@ msgstr "Privacy Policy"
 msgid "Save Changes"
 msgstr "Aggiorna"
 
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/ginger.utils.php:71
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/ginger.utils.php:76
 msgid ""
 "This website uses cookies. By continuing to use the site you are agreeing to "
 "its use of cookies."
@@ -64,7 +64,7 @@ msgstr ""
 "Questo sito utilizza cookie. Continuando la navigazione acconsenti "
 "all'utilizzo di questi cookie."
 
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/ginger.utils.php:71
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/ginger.utils.php:77
 msgid "This content has been disabled because you have not accepted cookies."
 msgstr ""
 "Questo contenuto può essere mostrato solo accettando l'utilizzo dei cookies."
@@ -133,67 +133,118 @@ msgid "Do you have a cache system?"
 msgstr "Hai un sistema di cache"
 
 #: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:38
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:102
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:122
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:142
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:113
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:133
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:153
 msgid "Yes"
 msgstr "Si"
 
 #: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:43
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:107
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:127
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:147
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:118
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:138
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:158
 msgid "No"
 msgstr "No"
 
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:50
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:53
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:48
+msgid ""
+"If you have a caching system (W3TC, Varnish, WP Super Cash...) choose YES. "
+"Ginger will optimize websites performances"
+msgstr ""
+"Se utilizzi un sistema di caching (W3TC, Varnish, WP Super Cash...) "
+"seleziona SI. Ginger ottimizzerà le prestazioni del sito"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:55
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:58
 msgid "Cookie Confirmation Type"
 msgstr "Tipo di conferma dei cookie"
 
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:56
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:61
 msgid "Opt-In"
 msgstr "Opt-In"
 
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:59
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:64
 msgid "Cookies are disabled until banner is accepted"
 msgstr "I cookie sono disabilitati finchè il banner non è accettato"
 
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:64
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:69
 msgid "Opt-Out"
 msgstr "Opt-Out"
 
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:67
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:72
 msgid "Cookies are disabled only if explicitly requested"
 msgstr "I cookie sono disabilitati solo se esplicitamente richiesto"
 
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:74
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:78
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:77
+msgid "Choose OPT-IN if you're in Italy"
+msgstr "Seleziona OPT-IN se ti trovi in Italia"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:85
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:89
 msgid "Let scroll to confirm"
 msgstr "Scrolla per confermare"
 
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:82
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:93
 msgid "Scroll to accept cookie"
 msgstr "Scrolla per accettare i cookie"
 
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:87
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:98
 msgid "Keep banner after scroll"
 msgstr "Non abilitare i cookie con lo scroll"
 
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:94
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:98
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:105
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:109
 msgid "Click out of banner to accept cookie"
 msgstr "Clicca fuori dal banner per accettare i cookie"
 
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:114
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:118
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:125
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:129
 msgid "Force reload page"
 msgstr "Forza il reload della pagina"
 
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:134
-#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:138
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:145
+msgid "Stress Mode"
+msgstr "Stress Mode"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:149
 msgid "Keep banner until acceptance"
 msgstr "Mantieni il banner fino all'accettazione"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:163
+msgid ""
+"If cookies are not accepted the banner will continues to be shown minimized"
+msgstr ""
+"Se i cookie non vengono accettati il banner continuerà ad essere mostrato "
+"minimizzato"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:170
+msgid "Cookies Duration"
+msgstr "Durata Cookie"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:174
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:177
+msgid "Select cookies duration"
+msgstr "Seleziona la durata dei cookie"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:179
+msgid "Select"
+msgstr "Seleziona"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:180
+msgid "1 Day"
+msgstr "1 Giorno"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:181
+msgid "1 Month"
+msgstr "1 Mese"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:182
+msgid "1 Year"
+msgstr "1 Anno"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/general.php:183
+msgid "For ever"
+msgstr "Per sempre"
 
 #: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:11
 #: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:14
@@ -315,6 +366,15 @@ msgstr "Sfondo"
 msgid "Button"
 msgstr "Button"
 
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:219
+msgid "Custom CSS"
+msgstr "Custom CSS"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:223
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/banner.php:226
+msgid "Insert here your banner custom CSS"
+msgstr "Inserisci qui il CSS personalizzato per il tuo banner"
+
 #: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/dialog.php:8
 msgid "Banner Dialog Setup"
 msgstr "Banner Dialog Setup"
@@ -356,6 +416,11 @@ msgstr "Titolo"
 #: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/policy.php:91
 msgid "Attention ! There is already a page with this title"
 msgstr "Attenzione! C'è già una pagina con questo titolo"
+
+#: /var/www/sitolocale/wp-content/plugins/ginger/admin/partial/policy.php:111
+msgid "If you create a new page this will be setted as Privacy Policy Page"
+msgstr ""
+"Se crei una nuova pagina questa sarà impostata come pagina Privacy Policy"
 
 #, fuzzy
 #~ msgid "Read More Button2"
