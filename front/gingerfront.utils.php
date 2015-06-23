@@ -300,7 +300,7 @@ function ginger_parse_dom($output){
         endif;
     endforeach;
     // get the HTML string back
-    $output = $doc->saveHTML($doc->documentElement);
+    $output = $doc->saveHTML();
     libxml_use_internal_errors(false);
  return $output;
 }
