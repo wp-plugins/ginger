@@ -97,7 +97,7 @@ function ginger_scirpt(){ ?>
         $label_disable_cookie = __('Disable Cookies', 'ginger');
     endif;
     //Recupero style custom
-    if($option_ginger_bar['background_color'] || $option_ginger_bar['text_color'] || $option_ginger_bar['link_color'] || $option_ginger_bar['ginger_css'] ): ?>
+    if($option_ginger_bar['background_color'] || $option_ginger_bar['text_color'] || $option_ginger_bar['link_color'] || $option_ginger_bar['ginger_css'] || $option_ginger_bar['button_color'] || $option_ginger_bar['button_text_color']): ?>
     <style>
         .ginger_container.<?php echo $option_ginger_bar['theme_ginger']; ?>{
             <?php if($option_ginger_bar['background_color']): ?> background-color: <?php echo $option_ginger_bar['background_color']; ?>;<?php endif; ?>
