@@ -120,37 +120,6 @@
 
 
                 </p>
-
-                <p>
-                    <label><b><?php _e("Read More Button", "ginger"); ?></b></label>
-                </p>
-
-                <p>
-                    <label><?php _e("Text", "ginger"); ?></label>
-                    <input name="read_more_button_text" id="read_more_button_text" type="text"
-                           value="<?php if ($options['read_more_button_text'] != "") {
-                               echo $options['read_more_button_text'];
-                           } else {
-                               echo _e('Read More', 'ginger');
-                           } ?>"  <?php if ($options['read_more_button_status'] == "0") {
-                        echo 'disabled=true';
-                    } ?>>
-                    <?php echo _e('Enable:', 'ginger') ?>&nbsp;
-                    <input type="checkbox" id="read_more_button_status" name="read_more_button_status"
-                           value="1" <?php if ($options['read_more_button_status'] == "1" or $options['read_more_button_status'] == "") {
-                        echo 'checked';
-                    } ?>
-                           onclick="en_dis_able_text_banner_button('read_more_button_status','read_more_button_text','img_read_more_button_status');">
-
-
-                    <img id="img_read_more_button_status"
-                         src="<?php if ($options['read_more_button_status'] == "1" or $options['read_more_button_status'] == "") {
-                             echo  plugins_url('/ginger/img/ok.png');
-                         } elseif ($options['read_more_button_status'] == "0") {
-                             echo plugins_url('/ginger/img/xx.png');
-                         } ?>" style="max-width: 20px; max-height: 20px; vertical-align: middle">
-                </p>
-
             </fieldset>
         </td>
     </tr>
@@ -237,7 +206,7 @@
                 <legend class="screen-reader-text"><span><?php _e("Insert here your banner custom CSS", "ginger"); ?></span></legend>
                 <p>
                     <label>
-                        <textarea name = "ginger_css" cols="100" rows="6" class="lined"><?php echo $options["ginger_css"];?></textarea>
+                        <textarea name = "ginger_css" cols="100" rows="20" class="lined"><?php echo $options["ginger_css"];?></textarea>
 
                     </label>
                 </p>

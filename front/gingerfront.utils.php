@@ -15,7 +15,7 @@ add_action( 'wp_enqueue_scripts', 'ginger_style_script' );
  */
 function ginger_style_script() {
     $option_ginger_bar = get_option('ginger_banner');
-    if($_COOKIE['ginger-cookie'] && $_COOKIE['ginger-cookie'] == 'N' || $option_ginger_bar['ginger_banner_type'] == 'dialog'):
+    if(isset($_COOKIE['ginger-cookie']) && $_COOKIE['ginger-cookie'] == 'N' || $option_ginger_bar['ginger_banner_type'] == 'dialog'):
         wp_register_style( 'ginger-style-dialog', plugin_dir_url( __FILE__ ) . 'css/cookies-enabler-dialog.css' );
         wp_enqueue_style( 'ginger-style-dialog' );
     else:
@@ -104,12 +104,12 @@ function ginger_scirpt(){ ?>
             <?php if($option_ginger_bar['text_color']): ?> color: <?php echo $option_ginger_bar['text_color']; ?>;<?php endif; ?>
         }
         <?php if($option_ginger_bar['button_color']): ?>
-        .ginger_btn.ginger-accept, .ginger_btn.ginger-dismiss, .ginger_btn.ginger-disable{
-             background: <?php echo $option_ginger_bar['button_color']; ?>;
+        a.ginger_btn.ginger-accept, .ginger_btn, .ginger_btn{
+             background: <?php echo $option_ginger_bar['button_color']; ?> !important;
         }
         <?php endif; ?>
         <?php if($option_ginger_bar['button_text_color']): ?>
-        .ginger_banner-wrapper > div > a.ginger_btn {
+         a.ginger_btn {
             color: <?php echo $option_ginger_bar['button_text_color']; ?> !important;
         }
         <?php endif; ?>
@@ -203,13 +203,13 @@ add_action('wp_footer', 'ginger_scirpt');
 function ginger_run(){
     $option_ginger_general = get_option('ginger_general');
     if($option_ginger_general['enable_ginger'] != 1) return;
-    if($_COOKIE['ginger-cookie'] && $_COOKIE['ginger-cookie'] == 'Y'):
+    if(isset($_COOKIE['ginger-cookie']) && $_COOKIE['ginger-cookie'] == 'Y'):
         if($option_ginger_general['ginger_cache'] == 'no') return;
     endif;
     if($option_ginger_general['ginger_opt'] == 'in'):
         ob_start();
         add_action('shutdown', '__shutdown', 0);
-        add_filter('final_output', 'ginger_parse_dom', $output);
+        add_filter('final_output', 'ginger_parse_dom');
     endif;
 }
 add_action('init', 'ginger_run');
