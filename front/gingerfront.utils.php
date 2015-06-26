@@ -82,6 +82,8 @@ function ginger_scirpt(){ ?>
     //Recupero Testo Iframe
     if($option_ginger_bar['ginger_Iframe_text']):
         $ginger_iframe_text = $option_ginger_bar['ginger_Iframe_text'];
+        $ginger_iframe_text = str_replace('</', '<\/', $ginger_iframe_text);
+        $ginger_iframe_text = str_replace( array("\n", "\r"), "<br \/>", $ginger_iframe_text );
     else:
         $ginger_iframe_text = 'This website uses cookies.';
     endif;
