@@ -53,6 +53,7 @@ function ginger_scirpt(){ ?>
     if($option_ginger_bar['ginger_banner_text']):
         $ginger_text = $option_ginger_bar['ginger_banner_text'];
         $ginger_text = str_replace('</', '<\/', $ginger_text);
+        $ginger_text = str_replace( array("\n", "\r"), "<br \/>", $ginger_text );
         //Recupero privacy policy se presente
         if(strpos($ginger_text, '{{privacy_page}}') !== false):
             $privacy_policy = get_option('ginger_policy', true);
