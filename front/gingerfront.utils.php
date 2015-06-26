@@ -298,7 +298,12 @@ function ginger_parse_dom($output){
             if(strpos_arr($src_iframe, $ginger_iframe_tags) !== false ):
                 $iframe->removeAttribute('src');
                 $iframe->setAttribute("data-ce-src", $src_iframe);
-                $iframe->setAttribute("class", "ginger-iframe");
+                if($iframe->hasAttribute('class')):
+                    $addclass = $iframe->getAttribute('class');
+                else:
+                    $addclass = '';
+                endif;
+                $iframe->setAttribute("class", "ginger-iframe " . $addclass);
             endif;
         endif;
     endforeach;

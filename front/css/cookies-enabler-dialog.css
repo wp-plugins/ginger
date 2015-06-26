@@ -129,7 +129,7 @@ iframe{
 }
 
 .ginger_banner-wrapper {
-    z-index: 9001;
+    z-index: 99999998;
     position: relative
 }
 
