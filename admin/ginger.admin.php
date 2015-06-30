@@ -1,7 +1,11 @@
 <?php
-$key= $_GET["tab"];
-if($key == "") $key = "general";
-$key ="ginger_".$key;
+if(isset($_GET['tab'])):
+    $tab = $_GET['tab'];
+    $key = "ginger_". $tab;
+else:
+    $tab = 'general';
+    $key = "ginger_general";
+endif;
 
 if(isset($_POST["submit"]) && !wp_verify_nonce($_POST['ginger_options'], 'save_ginger_options')){
   return;
@@ -72,11 +76,11 @@ $options = get_option($key);
    <a href="admin.php?page=ginger-setup&tab=policy" class="nav-tab <?php echo (($_GET["page"] == 'ginger-setup') && ($_GET["tab"] == "policy" )) ? 'nav-tab-active' : ''; ?>"><?php _e("Privacy Policy", "ginger"); ?></a>
        <?php  do_action("ginger_add_tab_menu"); ?>
    </h2>
-    <form method="post" action="admin.php?page=<?php echo $_GET["page"]; ?>&tab=<?php echo $_GET["tab"]; ?>" <?php if ($_GET["tab"]=='url'){echo 'class="repeater"';}?>>
+    <form method="post" action="admin.php?page=<?php echo $_GET["page"]; ?><?php if(isset($tab)) echo '&tab=' . $tab; ?>" <?php if (isset($tab) && $tab == 'url') echo 'class="repeater"';?>>
         <?php wp_nonce_field('save_ginger_options', 'ginger_options'); ?>
         <?php
-            switch($_GET["tab"]){
-                case "":
+            switch($tab){
+                case "general":
                     include('partial/general.php');
                 break;
                 case "banner":

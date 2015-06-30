@@ -204,6 +204,7 @@ add_action('wp_footer', 'ginger_scirpt');
 
 //Ginger Start
 function ginger_run(){
+    if(is_feed()) return;
     $option_ginger_general = get_option('ginger_general');
     if($option_ginger_general['enable_ginger'] != 1) return;
     if(isset($_COOKIE['ginger-cookie']) && $_COOKIE['ginger-cookie'] == 'Y'):
@@ -215,7 +216,7 @@ function ginger_run(){
         add_filter('final_output', 'ginger_parse_dom');
     endif;
 }
-add_action('init', 'ginger_run');
+add_action('wp', 'ginger_run');
 
 
 
@@ -249,8 +250,14 @@ function ginger_parse_dom($output){
         'www.youtube.com/iframe_api',
         'www.google-analytics.com/analytics.js',
         'google-analytics.com/ga.js',
-        'maps.googleapis.com'
+        'maps.googleapis.com',
+        'disqus.com',
     );
+
+    $ginger_script_async_tags = array(
+        'addthis.com'
+    );
+
     do_action('ginger_add_scripts');
 
     $ginger_iframe_tags = array(
@@ -259,7 +266,8 @@ function ginger_parse_dom($output){
         'www.facebook.com/plugins/like.php',
         'apis.google.com',
         'www.google.com/maps/embed/',
-        'player.vimeo.com'
+        'player.vimeo.com',
+        'disqus.com'
     );
     do_action('ginger_add_iframe');
 
@@ -269,13 +277,20 @@ function ginger_parse_dom($output){
     $doc->loadHTML(mb_convert_encoding($output, 'HTML-ENTITIES', 'UTF-8'));
     // get all the script tags
     $script_tags = $doc->getElementsByTagName('script');
-
+    $async_array = array();
+    $domElemsToRemove = array();
     foreach($script_tags as $script):
-       $src_script =  $script->getAttribute('src');
+        $src_script =  $script->getAttribute('src');
         if($src_script):
             if(strpos_arr($src_script, $ginger_script_tags) !== false ):
                 $script->setAttribute("class", "ginger-script");
                 $script->setAttribute("type", "text/plain");
+                continue;
+            endif;
+            if(strpos_arr($src_script, $ginger_script_async_tags) !== false ):
+                $async_array[] = $src_script;
+                $domElemsToRemove[] = $script;
+                continue;
             endif;
         endif;
         if($script->nodeValue):
@@ -287,9 +302,16 @@ function ginger_parse_dom($output){
                 endif;
                 $script->setAttribute("class", "ginger-script");
                 $script->setAttribute("type", "text/plain");
+                if($ginger_script_tags[$key] == 'disqus.com/embed.js' || $ginger_script_tags[$key] == 'disqus.com'):
+                    $script->setAttribute("class", "ginger-script");
+                    $script->setAttribute("type", "text/plain");
+                endif;
             endif;
         endif;
     endforeach;
+    foreach( $domElemsToRemove as $domElement ){
+        $domElement->parentNode->removeChild($domElement);
+    }
     // get all the iframe tags
     $iframe_tags = $doc->getElementsByTagName('iframe');
     foreach($iframe_tags as $iframe):
@@ -307,6 +329,14 @@ function ginger_parse_dom($output){
             endif;
         endif;
     endforeach;
+    if(!empty($async_array)):
+        $text = json_encode($async_array);
+        $text = 'var async_ginger_script = ' . $text . ';';
+        $head = $doc->getElementsByTagName('head')->item(0);
+        $element = $doc->createElement('script', $text);
+        $head->appendChild($element);
+    endif;
+
     // get the HTML string back
     $output = $doc->saveHTML();
     libxml_use_internal_errors(false);
