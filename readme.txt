@@ -30,6 +30,8 @@ The aim of Ginger is to be a **complete plug'n play solution** that make your we
 * google maps
 * youtube
 * vimeo
+* Disqus
+* ShareThis
 
 = Coming soon: =
 * **WPML** support
