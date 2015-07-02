@@ -3,7 +3,7 @@ Contributors: manafactory, webgrafia, matteobarale
 Tags: EU Cookie Law, cookie law, block cookie, cookie consent, cookie law, cookie policy, privacy policy, cookie banner, italian cookie law, cookie italia
 Requires at least: 3.0.1
 Tested up to: 4.2.2
-Stable tag: 1.2
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,9 @@ No, you can be safe from plugins conflict. It's been developed using Cookies Ena
 4. Front-end example of light banner in footer, with iframe locked before approvation in opt-in mode
 
 == Changelog ==
+
+= 1.2.1 =
+* Style Bugfix
 
 = 1.2 =
 * Add support for disqus and ShareThis

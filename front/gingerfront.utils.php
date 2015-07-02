@@ -23,6 +23,42 @@ function ginger_style_script() {
         wp_enqueue_style( 'ginger-style' );
     endif;
 }
+add_action('wp_head', 'gigner_custom_style' );
+function gigner_custom_style(){
+    $option_ginger_general = get_option('ginger_general');
+    $option_ginger_bar = get_option('ginger_banner');
+    if($option_ginger_general['enable_ginger'] != 1) return;
+    //Recupero style custom
+    if($option_ginger_bar['background_color'] || $option_ginger_bar['text_color'] || $option_ginger_bar['link_color'] || $option_ginger_bar['ginger_css'] || $option_ginger_bar['button_color'] || $option_ginger_bar['button_text_color']): ?>
+        <style>
+            .ginger_container.<?php echo $option_ginger_bar['theme_ginger']; ?>{
+            <?php if($option_ginger_bar['background_color']): ?> background-color: <?php echo $option_ginger_bar['background_color']; ?>;<?php endif; ?>
+            <?php if($option_ginger_bar['text_color']): ?> color: <?php echo $option_ginger_bar['text_color']; ?>;<?php endif; ?>
+            }
+            <?php if($option_ginger_bar['button_color']): ?>
+            a.ginger_btn.ginger-accept, a.ginger_btn.ginger-disable, .ginger_btn{
+                background: <?php echo $option_ginger_bar['button_color']; ?> !important;
+            }
+            a.ginger_btn.ginger-accept:hover, a.ginger_btn.ginger-disable:hover, .ginger_btn{
+                background: <?php echo $option_ginger_bar['button_color']; ?> !important;
+            }
+            <?php endif; ?>
+            <?php if($option_ginger_bar['button_text_color']): ?>
+            a.ginger_btn {
+                color: <?php echo $option_ginger_bar['button_text_color']; ?> !important;
+            }
+            <?php endif; ?>
+            <?php if($option_ginger_bar['link_color']): ?>
+            .ginger_container.<?php echo $option_ginger_bar['theme_ginger']; ?> a{
+            <?php if($option_ginger_bar['link_color']): ?> color: <?php echo $option_ginger_bar['link_color']; ?>;<?php endif; ?>
+            }
+            <?php endif;?>
+            <?php if($option_ginger_bar['ginger_css']): ?>
+            <?php echo $option_ginger_bar['ginger_css']; ?>
+            <?php endif;?>
+        </style>
+    <?php endif;
+}
 
 function ginger_scirpt(){ ?>
     <?php
@@ -98,34 +134,8 @@ function ginger_scirpt(){ ?>
         $label_disable_cookie =  $option_ginger_bar['disable_cookie_button_text'];
     else:
         $label_disable_cookie = __('Disable Cookies', 'ginger');
-    endif;
-    //Recupero style custom
-    if($option_ginger_bar['background_color'] || $option_ginger_bar['text_color'] || $option_ginger_bar['link_color'] || $option_ginger_bar['ginger_css'] || $option_ginger_bar['button_color'] || $option_ginger_bar['button_text_color']): ?>
-    <style>
-        .ginger_container.<?php echo $option_ginger_bar['theme_ginger']; ?>{
-            <?php if($option_ginger_bar['background_color']): ?> background-color: <?php echo $option_ginger_bar['background_color']; ?>;<?php endif; ?>
-            <?php if($option_ginger_bar['text_color']): ?> color: <?php echo $option_ginger_bar['text_color']; ?>;<?php endif; ?>
-        }
-        <?php if($option_ginger_bar['button_color']): ?>
-        a.ginger_btn.ginger-accept, .ginger_btn, .ginger_btn{
-             background: <?php echo $option_ginger_bar['button_color']; ?> !important;
-        }
-        <?php endif; ?>
-        <?php if($option_ginger_bar['button_text_color']): ?>
-         a.ginger_btn {
-            color: <?php echo $option_ginger_bar['button_text_color']; ?> !important;
-        }
-        <?php endif; ?>
-        <?php if($option_ginger_bar['link_color']): ?>
-        .ginger_container.<?php echo $option_ginger_bar['theme_ginger']; ?> a{
-            <?php if($option_ginger_bar['link_color']): ?> color: <?php echo $option_ginger_bar['link_color']; ?>;<?php endif; ?>
-        }
-        <?php endif;?>
-        <?php if($option_ginger_bar['ginger_css']): ?>
-            <?php echo $option_ginger_bar['ginger_css']; ?>
-        <?php endif;?>
-    </style>
-    <?php endif;?>
+    endif; ?>
+
     <!-- Ginger Script -->
     <script src="<?php echo plugin_dir_url( __FILE__ ); ?>js/cookies-enabler.min.js"></script>
     <!-- Init the script -->
