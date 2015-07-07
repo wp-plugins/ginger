@@ -260,15 +260,14 @@ function ginger_parse_dom($output){
         'www.youtube.com/iframe_api',
         'www.google-analytics.com/analytics.js',
         'google-analytics.com/ga.js',
-        'maps.googleapis.com',
+        'new google.maps.',
+        '_getTracker',
         'disqus.com',
     );
 
     $ginger_script_async_tags = array(
         'addthis.com'
     );
-
-    do_action('ginger_add_scripts');
 
     $ginger_iframe_tags = array(
         'youtube.com',
@@ -280,7 +279,11 @@ function ginger_parse_dom($output){
         'disqus.com'
     );
     do_action('ginger_add_iframe');
-
+    if(strpos($output, '<html') === false):
+        return $output;
+    elseif(strpos($output, '<html') > 200 ):
+        return $output;
+    endif;
     libxml_use_internal_errors(true);
     $doc = new DOMDocument();
     $doc->encoding = 'utf-8';
