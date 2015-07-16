@@ -11,17 +11,17 @@
 add_action( 'admin_menu', 'register_ginger_menu_page' );
 function register_ginger_menu_page(){
     add_menu_page( 'ginger', 'Ginger Cookie', 'manage_options', 'ginger-setup', 'ginger_menu_page', plugins_url( 'ginger/img/ginger-color.png' ));
+
     do_action("ginger_add_menu");
-  //  add_submenu_page( 'ginger-setup', "About", __("About EU Law", "ginger"), 'manage_options', 'ginger-about', 'ginger_about_menu_page');
+    //add_submenu_page( 'ginger-setup', "About", __("About EU Law", "ginger"), 'manage_options', 'ginger-about', 'ginger_about_menu_page');
 }
+
 function ginger_menu_page(){
     require_once(plugin_dir_path( __FILE__ )."/ginger.admin.php");
 }
 function ginger_about_menu_page(){
     require_once(plugin_dir_path( __FILE__ )."/ginger.about.php");
 }
-
-
 //Aggingo style e script per ginger backend
 add_action( 'admin_enqueue_scripts', 'ginger_add_admin_js' );
 function ginger_add_admin_js( $hook ) {
@@ -44,6 +44,9 @@ function save_privacy_page($title,$content){
       'post_category' => '',
       'post_type'     => 'page'
     );
+
+
+
     $id = wp_insert_post( $my_post );
 	return($id);
 }

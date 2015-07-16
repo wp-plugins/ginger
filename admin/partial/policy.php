@@ -54,20 +54,10 @@
                     </label>
                     <select name="ginger_privacy_page"
                             id="privacy_page_select" <?php if ($options == "") echo ' disabled="true"'; ?>>
-                        <option value="">Select page</option>
-                        <?php
-                        foreach ($pages as $page) {
-                            ?>
-
-                            <option
-                                value="<?php echo $page->ID;?>" <?php if ($options == $page->ID) echo ' selected="selected" '; ?>><?php echo $page->post_title; ?></option>
-
-
-
-
-                        <?php
-                        }
-                        ?>
+            <option value=""><?php _e('Select page', 'ginger'); ?></option>
+            <?php foreach ($pages as $page) { ?>
+                <option value="<?php echo $page->ID;?>" <?php if ($options == $page->ID) echo ' selected="selected" '; ?>><?php echo $page->post_title; ?></option>
+            <?php } ?>
                     </select>
                 </p>
             </fieldset>

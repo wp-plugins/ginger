@@ -113,9 +113,9 @@
 
                     <img id="img_disable_cookie_button_status"
                          src="<?php if ($options['disable_cookie_button_status'] == "1" or $options['disable_cookie_button_status'] == "") {
-                             echo '../wp-content/plugins/ginger/img/ok.png';
+                             echo plugins_url('ginger/img/ok.png');
                          } elseif ($options['disable_cookie_button_status'] == "0") {
-                             echo '../wp-content/plugins/ginger/img/xx.png';
+                             echo plugins_url('ginger/img/xx.png');
                          } ?>" style="max-width: 20px; max-height: 20px; vertical-align: middle">
 
 

@@ -39,6 +39,28 @@ function en_dis_able_text_banner_button(id,id_text,id_img){
 
         document.getElementById(id_text).disabled=true;
         document.getElementById(id_img).src='../wp-content/plugins/ginger/img/xx.png';
-                }
+
+
+    }
+
+}
+
+function en_dis_able_add_on(id,id_img,id_text){
+
+
+    var status=document.getElementById(id).checked;
+
+
+    if (status){
+        if (id!='google_analytics_status') {
+            document.getElementById(id_text).disabled = false;
+        }
+        document.getElementById(id_img).src='../wp-content/plugins/ginger/img/ok.png';
+
+    }else if (!status){
+
+        document.getElementById(id_text).disabled=true;
+        document.getElementById(id_img).src='../wp-content/plugins/ginger/img/xx.png';
+    }
 
 }

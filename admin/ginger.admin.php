@@ -71,7 +71,7 @@ $options = get_option($key);
    <h2>Ginger - EU Cookie Law</h2>
 <hr>
    <h2 class="nav-tab-wrapper">
-   <a href="admin.php?page=ginger-setup" class="nav-tab <?php echo (($_GET["page"] == 'ginger-setup') && ($_GET["tab"] == "" )) ? 'nav-tab-active' : ''; ?>"><?php _e("General Configuration", "ginger"); ?></a>
+   <a href="admin.php?page=ginger-setup" class="nav-tab <?php echo (($_GET["page"] == 'ginger-setup') && (($_GET["tab"] == "" ) || $_GET["tab"] == "general")) ? 'nav-tab-active' : ''; ?>"><?php _e("General Configuration", "ginger"); ?></a>
    <a href="admin.php?page=ginger-setup&tab=banner" class="nav-tab <?php echo (($_GET["page"] == 'ginger-setup') && ($_GET["tab"] == "banner" )) ? 'nav-tab-active' : ''; ?>"><?php _e("Banner Setup", "ginger"); ?></a>
    <a href="admin.php?page=ginger-setup&tab=policy" class="nav-tab <?php echo (($_GET["page"] == 'ginger-setup') && ($_GET["tab"] == "policy" )) ? 'nav-tab-active' : ''; ?>"><?php _e("Privacy Policy", "ginger"); ?></a>
        <?php  do_action("ginger_add_tab_menu"); ?>
@@ -93,3 +93,6 @@ $options = get_option($key);
         <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php _e("Save Changes", "ginger"); ?>"></p>
     </form>
 </div>
+
+
+
