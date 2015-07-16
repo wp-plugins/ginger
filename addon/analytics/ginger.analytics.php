@@ -1,0 +1,176 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: matteobarale
+ * Date: 26/06/15
+ * Time: 12:02
+ */
+
+add_action('ginger_add_menu', 'add_ginger_analytics');
+function add_ginger_analytics(){
+    add_submenu_page( 'ginger-setup', "Ginger Analytics", __("Google Analytics", "ginger"), 'manage_options', 'ginger-analytics', 'ginger_analytics');
+}
+
+function ginger_analytics(){
+
+    $wp_root = dirname(dirname( dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) ));
+    if ( file_exists( $wp_root . '/wp-load.php' ) ) {
+        require_once( $wp_root . "/wp-load.php" );
+    } else {
+        exit;
+    }
+
+    if ( ! current_user_can( 'manage_options' ) ) die();
+
+
+    $option_analitycs = get_option('gingeranalytics');
+    $activationemail = $option_analitycs['email'];
+    $activationcode = $option_analitycs['licence_key'];
+    $product_id = $option_analitycs['product_id'];
+    $instance = $option_analitycs['instance'];
+
+
+    $args = array(
+    'wc-api'	  => 'software-api',
+    'request'     => 'check',
+    'email'		  => $activationemail,
+    'licence_key' => $activationcode,
+    'product_id'  => $product_id,
+    'instance'    => $instance
+    );
+
+    $data = execute_request( $args );
+    if($data->success == 1): //Inizio Verifica ?>
+    <?php
+        if($_POST):
+            if(isset($_POST['enable_ginger_analytics']) && $_POST['enable_ginger_analytics'] == 1):
+                $content =  file_get_contents(get_bloginfo('url') .'/?analytics=check');
+                $array_to_check = array(
+                    'www.google-analytics.com/analytics.js',
+                    'google-analytics.com/ga.js',
+                    '_getTracker',
+                );
+
+                foreach($array_to_check as $check):
+                    if(strpos( $content, $check) !== false):
+                        $find = 'trovatocodice';
+                        $_POST['enable_ginger_analytics'] = 0;
+                        break;
+                    endif;
+                endforeach;
+
+            endif;
+            $args = array(
+                'enable_ginger_analytics'       => $_POST['enable_ginger_analytics'],
+                'ginger_analytics_code'         => $_POST['ginger_analytics_code'],
+                'anonymize_ginger_analytics'    => $_POST['anonymize_ginger_analytics']
+            );
+            update_option('gingeranalytics_option', $args);
+        endif;
+    ?>
+    <div class="wrap">
+        <?php $option  = get_option('gingeranalytics_option');?>
+        <h2>Ginger - Analytics Add On</h2>
+        <?php if(isset($find)): ?>
+            <h3><?php _e("Attenzione è stato trovato un codice analytics nella pagina", "ginger"); ?></h3>
+        <?php endif; ?>
+        <form method="post" action="admin.php?page=<?php echo $_GET["page"]; ?>">
+            <?php wp_nonce_field('save_ginger_analytics_options', 'ginger_analytics_options'); ?>
+            <table class="form-table striped">
+            <thead>
+            <tr>
+                <td colspan="2">
+                    <h3><?php _e('Impostazioni Add on', 'ginger'); ?></h3>
+                </td>
+            </tr>
+            </thead>
+            <tr>
+                <th scope="row" style="padding-left:20px;"><?php _e("Enable Ginger Analytics", "ginger"); ?></th>
+                <td>
+                    <fieldset>
+                        <legend class="screen-reader-text"><span><?php _e("Enable Ginger Analytics", "ginger"); ?></span></legend>
+                        <p>
+                            <label>
+                                <input name="enable_ginger_analytics" type="radio" value="1" class="tog" <?php if(isset($option['enable_ginger_analytics']) && $option['enable_ginger_analytics'] == 1 ): echo 'checked'; endif;?>>Abilitato
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input name="enable_ginger_analytics" type="radio" value="0" class="tog" <?php if(isset($option['enable_ginger_analytics']) && $option['enable_ginger_analytics'] == 0 ): echo 'checked'; endif;?>>Disabilitato
+                            </label>
+                        </p>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" style="padding-left:20px;"><?php _e("Codice Analytics (Ex: UA-XXXXXXX-X)", "ginger"); ?></th>
+                <td>
+                    <fieldset>
+                        <legend class="screen-reader-text"><span><?php _e("Codice Analytics (Ex: UA-XXXXXXX-X)", "ginger"); ?></span></legend>
+                        <p>
+                            <label>
+                                <input name="ginger_analytics_code" type="text" value="<?php if(isset($option['ginger_analytics_code']) && $option['ginger_analytics_code'] != '' ): echo $option['ginger_analytics_code']; endif;?>" placeholder="<?php _e('Inserisci qui il tuo traking code', 'ginger'); ?>">
+                            </label>
+                        </p>
+                    </fieldset>
+                </td>
+            </tr>
+        </table>
+            <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php _e("Save Changes", "ginger"); ?>"></p>
+        </form>
+    </div>
+    <?php else: //La licenza sembra non essere valida; ?>
+        <?php $option = get_option('gingeranalytics');  $option['activated'] = 0; update_option('gingeranalytics', $option); ?>
+    <div class="wrap">
+        <h2>Ginger - Analytics Add On</h2>
+        <p>Il codice di licenza sembra non essere attivo per questo sito l'add-on verra disinstallato</p>
+        <p>Se ritieni ci sia stato un errore in questa verifica contattaci</p>
+    </div>
+    <?php endif; ?>
+
+
+<?php }
+
+add_action('wp_footer', 'ginger_analytics_code');
+function ginger_analytics_code(){ ?>
+    <?php if(isset($_GET) && isset($_GET['analytics']) && $_GET['analytics'] == 'check') return; ?>
+    <?php $option  = get_option('gingeranalytics_option');?>
+    <?php if(isset($option['enable_ginger_analytics']) && $option['enable_ginger_analytics'] == 1): ?>
+    <!-- Ginger Analytics code -->
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+
+        </script>
+    <!-- End Ginger Analytics code -->
+    <?php endif; ?>
+<?php }
+
+
+add_action( 'wp_head', 'ginger_anyltics_script_anonymize');
+function ginger_anyltics_script_anonymize(){ ?>
+    <?php $option  = get_option('gingeranalytics_option');?>
+  <script>var ginger_anyltics_add_on = 1; var ginger_analytics_code = "<?php if(isset($option['ginger_analytics_code']) && $option['ginger_analytics_code'] != '' ): echo $option['ginger_analytics_code']; endif;?>"</script>
+<?php }
+
+// Registro script per il controllo dello script Analytics
+add_action( 'wp_enqueue_scripts', 'ginger_analytics_style_script' );
+function ginger_analytics_style_script() {
+        wp_register_script( 'ginger-analytics_script', plugin_dir_url( __FILE__ ) . 'gingeranalytics.min.js' );
+        wp_enqueue_script( 'ginger-analytics_script' );
+}
+
+add_filter('ginger_script_tags', 'ginger_analytics_remover',10,3);
+function ginger_analytics_remover($array){
+    $option  = get_option('gingeranalytics_option');
+    if(isset($option['enable_ginger_analytics']) && $option['enable_ginger_analytics'] == 1 ):
+        $pos = array_search('www.google-analytics.com/analytics.js', $array);
+        unset($array[$pos]);
+        $pos = array_search('google-analytics.com/ga.js', $array);
+        unset($array[$pos]);
+        return $array;
+    endif;
+}
