@@ -1,10 +1,10 @@
- *{
+.ginger-banner *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-p{
+.ginger-banner p{
     margin-bottom: 1em;
 }
 
@@ -124,7 +124,7 @@ p{
     margin: 0;
 }
 
-iframe{
+.ginger-banner iframe{
     width: 100%;
 }
 
