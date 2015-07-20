@@ -88,4 +88,23 @@ function ginger_plugin_activate() {
     }
 }
 
+function ginger_app_price($appname){
 
+    $url = "http://www.ginger-cookielaw.com/api/?pname=".$appname;
+    $response = wp_remote_get($url);
+    if($response) {
+        $array = json_decode($response["body"], true);
+        $price = $array[$appname]["price"];
+        if($price == "0"){
+            echo '<small style="color: green">(';
+            _e("Free", "ginger");
+            echo ')</small>';
+        }else{
+            echo '<small style="color: green">(';
+            _e("price: ", "ginger");
+            echo $price;
+            echo '&euro;)</small>';
+        }
+
+    }
+}

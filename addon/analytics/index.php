@@ -16,8 +16,13 @@ function ginger_analytics_activation_page()
         <thead>
         <tr>
             <td colspan="2">
-                <h3><?php _e("Google Analytics", "ginger"); ?></h3>
+                <h3><?php _e("Google Analytics", "ginger"); ?>
+                    <?php
+                    $appname = "google-analytics";
+                    ginger_app_price($appname);
+                    ?></h3>
                 <small><?php _e("Google Analytics Add-on will add analytics tracking code to your site, switching automatically between anonymized/not anonymized mode based on user cookies acceptance.", "ginger"); ?></small>
+
                 <p>
                     <b style="color:#F99A30"><?php _e("Get activation code here:", "ginger"); ?> <a href="http://www.ginger-cookielaw.com/prodotto/google-analytics" target="_BLANK">http://www.ginger-cookielaw.com/prodotto/google-analytics/</a></b>
                 </p>

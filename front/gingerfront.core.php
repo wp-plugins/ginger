@@ -81,6 +81,7 @@ function ginger_run(){
         if($option_ginger_general['ginger_cache'] == 'no') return;
     endif;
     if($option_ginger_general['ginger_opt'] == 'in'):
+
         ob_start();
         add_action('shutdown', '__shutdown', 0);
         add_filter('final_output', 'ginger_parse_dom');
