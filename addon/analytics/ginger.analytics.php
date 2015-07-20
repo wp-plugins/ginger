@@ -131,29 +131,11 @@ function ginger_analytics(){
 
 <?php }
 
-add_action('wp_footer', 'ginger_analytics_code');
-function ginger_analytics_code(){ ?>
-    <?php if(isset($_GET) && isset($_GET['analytics']) && $_GET['analytics'] == 'check') return; ?>
-    <?php $option  = get_option('gingeranalytics_option');?>
-    <?php if(isset($option['enable_ginger_analytics']) && $option['enable_ginger_analytics'] == 1): ?>
-    <!-- Ginger Analytics code -->
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-
-        </script>
-    <!-- End Ginger Analytics code -->
-    <?php endif; ?>
-<?php }
-
 
 add_action( 'wp_head', 'ginger_anyltics_script_anonymize');
 function ginger_anyltics_script_anonymize(){ ?>
     <?php $option  = get_option('gingeranalytics_option');?>
-  <script>var ginger_anyltics_add_on = 1; var ginger_analytics_code = "<?php if(isset($option['ginger_analytics_code']) && $option['ginger_analytics_code'] != '' ): echo $option['ginger_analytics_code']; endif;?>"</script>
+  <script>gingeranalytics('<?php if(isset($option['ginger_analytics_code']) && $option['ginger_analytics_code'] != '' ): echo $option['ginger_analytics_code']; endif;?>')</script>
 <?php }
 
 // Registro script per il controllo dello script Analytics

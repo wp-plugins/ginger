@@ -104,14 +104,16 @@ add_action("ginger_addon_activation_page", "ginger_wpml_activation_page");
 
 function ginger_wpml_activation_page()
 {
-
-
     ?>
     <table class="form-table striped">
         <thead>
         <tr>
             <td colspan="2">
-                <h3><?php _e("WPML", "ginger"); ?></h3>
+                <h3><?php _e("WPML", "ginger"); ?>
+                    <?php
+                    $appname = "wpml";
+                    ginger_app_price($appname);
+                    ?></h3>
                 <small><?php _e("WPML add-on will adapt Ginger for WPML multilanguage websites .", "ginger"); ?></small>
                 <p>
                     <b style="color:#F99A30"><?php _e("Get activation code here:", "ginger"); ?> <a href="http://www.ginger-cookielaw.com/prodotto/wpml/" target="_BLANK">http://www.ginger-cookielaw.com/prodotto/wpml/</a></b>

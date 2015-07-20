@@ -3,7 +3,7 @@ Contributors: manafactory, webgrafia, matteobarale
 Tags: EU Cookie Law, cookie law, block cookie, cookie consent, cookie law, cookie policy, privacy policy, cookie banner, italian cookie law, cookie italia
 Requires at least: 3.0.1
 Tested up to: 4.2.2
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,7 @@ The aim of Ginger is to be a **complete plug'n play solution** that make your we
 * Disqus
 * ShareThis
 * Adsense
+* WPML
 
 = Coming soon: =
 * **Privacy Policy**  Generator
@@ -73,6 +74,9 @@ No, you can be safe from plugins conflict. It's been developed using Cookies Ena
 4. Front-end example of light banner in footer, with iframe locked before approvation in opt-in mode
 
 == Changelog ==
+
+= 2.0.2 =
+* Fix analytics addon
 
 = 2.0.1 =
 * BugFix

@@ -16,7 +16,11 @@ function ginger_adsense_activation_page()
         <thead>
         <tr>
             <td colspan="2">
-                <h3><?php _e("Google AdSense", "ginger"); ?></h3>
+                <h3><?php _e("Google AdSense", "ginger"); ?>
+                    <?php
+                    $appname = "adsense";
+                    ginger_app_price($appname);
+                    ?></h3>
                 <small><?php _e("This add-on blocks cookies and ads created by Google AdSense, until user's acceptation.", "ginger"); ?></small>
                 <p>
 

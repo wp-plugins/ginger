@@ -56,7 +56,7 @@ function ginger_add_on_menu_page(){
 
 $wp_root = dirname( dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) );
 if ( file_exists( $wp_root . '/wp-load.php' ) ) {
-    require_once( $wp_root . "/wp-load.php" );
+   // require_once( $wp_root . "/wp-load.php" );
 } else {
     exit;
 }
@@ -88,11 +88,10 @@ $links = array(
     'deactivation' => 'Deactivation'
 );
 
-foreach ( $links as $key => $value ) {
-    echo '<a href="' . add_query_arg( 'request', $key ) . '">' . $value . '</a> | ';
-}
-
-echo '<br/><br/>';
+//foreach ( $links as $key => $value ) {
+//    echo '<a href="' . add_query_arg( 'request', $key ) . '">' . $value . '</a> | ';
+//}
+//echo '<br/><br/>';
 
 //
 // Valid activation request
@@ -106,7 +105,7 @@ if ( $request == 'activation' && $activationcode != '' && $activationemail != ''
     );
 
     $data = execute_request( $args );
-    var_dump($data);
+    //var_dump($data);
     if($data->activated == 1):
         $args = array(
             'activated'   => 1,
