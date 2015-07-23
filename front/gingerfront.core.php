@@ -31,7 +31,7 @@ function ginger_get_text_banner($option_ginger_bar){
         if(strpos($ginger_text, '{{privacy_page}}') !== false):
             $privacy_policy = get_option('ginger_policy', true);
             $privacy_policy = get_post($privacy_policy);
-            $privacy_policy = ' <a href="' . get_permalink($privacy_policy->ID) . '">' . $privacy_policy->post_title . '<\/a>';
+            $privacy_policy = ' <a href="' . get_permalink($privacy_policy->ID) . '">' . addslashes($privacy_policy->post_title) . '<\/a>';
             $ginger_text = str_replace('{{privacy_page}}', $privacy_policy, $ginger_text);
         endif;
 
@@ -60,7 +60,7 @@ function ginger_get_label_accept_cookie($option_ginger_bar){
 function ginger_get_label_disable_cookie($option_ginger_bar){
 
 //Recupero Label
-if($option_ginger_bar['disable_cookie_button_text']):
+if(isset($option_ginger_bar['disable_cookie_button_text']) && $option_ginger_bar['disable_cookie_button_text']):
     $label_disable_cookie =  $option_ginger_bar['disable_cookie_button_text'];
 else:
     $label_disable_cookie = __('Disable Cookies', 'ginger');
@@ -76,11 +76,11 @@ endif;
 function ginger_run(){
     if(is_feed()) return;
     $option_ginger_general = get_option('ginger_general');
-    if($option_ginger_general['enable_ginger'] != 1) return;
+    if(!(isset($option_ginger_general['enable_ginger']) && $option_ginger_general['enable_ginger'] == 1)) return;
     if(isset($_COOKIE['ginger-cookie']) && $_COOKIE['ginger-cookie'] == 'Y'):
-        if($option_ginger_general['ginger_cache'] == 'no') return;
+        if(isset($option_ginger_general['ginger_cache']) && $option_ginger_general['ginger_cache'] == 'no') return;
     endif;
-    if($option_ginger_general['ginger_opt'] == 'in'):
+    if(isset($option_ginger_general['ginger_opt']) && $option_ginger_general['ginger_opt'] == 'in'):
 
         ob_start();
         add_action('shutdown', '__shutdown', 0);
@@ -126,7 +126,7 @@ function ginger_parse_dom($output){
         'disqus.com',
     );
     $ginger_script_tags = apply_filters('ginger_script_tags', $ginger_script_tags);
-    $ginger_script_async_tags = array(
+       $ginger_script_async_tags = array(
         'addthis.com'
     );
     $ginger_script_async_tags = apply_filters('ginger_script_async_tags', $ginger_script_async_tags);
@@ -140,6 +140,8 @@ function ginger_parse_dom($output){
         'disqus.com'
     );
     $ginger_iframe_tags = apply_filters('ginger_add_iframe', $ginger_iframe_tags);
+
+
     if(strpos($output, '<html') === false):
         return $output;
     elseif(strpos($output, '<html') > 200 ):

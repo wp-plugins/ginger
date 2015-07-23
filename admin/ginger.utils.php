@@ -11,9 +11,7 @@
 add_action( 'admin_menu', 'register_ginger_menu_page' );
 function register_ginger_menu_page(){
     add_menu_page( 'ginger', 'Ginger Cookie', 'manage_options', 'ginger-setup', 'ginger_menu_page', plugins_url( 'ginger/img/ginger-color.png' ));
-
     do_action("ginger_add_menu");
-    //add_submenu_page( 'ginger-setup', "About", __("About EU Law", "ginger"), 'manage_options', 'ginger-about', 'ginger_about_menu_page');
 }
 
 function ginger_menu_page(){
@@ -46,29 +44,17 @@ function save_privacy_page($title,$content){
     );
 
 
-
     $id = wp_insert_post( $my_post );
 	return($id);
 }
 
-//TODO questo è da spostare
-function is_ginger_multilang_active(){
-    $ginger_active="true";
-    if(is_plugin_active('sitepress-multilingual-cms/sitepress.php') and ($ginger_active)) {
-        $active=true;
-    }else{
-        $active=false;
-    }
-return $active;
-}
+
 //Attivazione plugin abilito le impostazioni di base se non inserite.
 function ginger_plugin_activate() {
     $options = get_option('ginger_general');
     if (!is_array($options)){
         $options = array('enable_ginger' => '0', 'ginger_cache' => 'yes', 'ginger_opt' => 'in', 'ginger_scroll' => '1', 'ginger_click_out' => '0' , 'ginger_force_reload' => '0' , 'ginger_keep_banner' => '0' );
         update_option('ginger_general', $options);
-
-     //   $options = array('ginger_banner_type' => 'bar', 'ginger_banner_position' => 'top', 'ginger_banner_text' => __("This website uses cookies. By continuing to use the site you are agreeing to its use of cookies.", "ginger"),'ginger_Iframe_text' =>__("This content has been disabled because you have not accepted cookies.", "ginger"), 'accept_cookie_button_text' => 'Accept', 'disable_cookie_button_text'=> 'Disable', 'disable_cookie_button_status' => '0','disable_cookie_button_checkbox' => '1', 'read_more_button_text' => 'Read More', 'read_more_button_status' => '1','theme_ginger' => 'light', 'background_color' =>'', 'text_color' =>'', 'button_color' =>'', 'link_color' =>'');
 
         $options =   array (
             'ginger_banner_type' => 'bar',
@@ -88,23 +74,30 @@ function ginger_plugin_activate() {
     }
 }
 
-function ginger_app_price($appname){
+function ginger_app_price($appname, $appdata = false){
+    if(!$appdata)
+        $appdata = ginger_app_data($appname);
+    $price = $appdata["price"];
+    if($price == "0"){
+            echo '<small style="color: green">(';
+            _e("Free", "ginger");
+            echo ')</small>';
+    }else{
+            echo '<small style="color: green">(';
+            _e("price: ", "ginger");
+            echo $price;
+            echo '&euro;)</small>';
+    }
+
+}
+
+
+function ginger_app_data($appname){
 
     $url = "http://www.ginger-cookielaw.com/api/?pname=".$appname;
     $response = wp_remote_get($url);
     if($response) {
         $array = json_decode($response["body"], true);
-        $price = $array[$appname]["price"];
-        if($price == "0"){
-            echo '<small style="color: green">(';
-            _e("Free", "ginger");
-            echo ')</small>';
-        }else{
-            echo '<small style="color: green">(';
-            _e("price: ", "ginger");
-            echo $price;
-            echo '&euro;)</small>';
-        }
-
+        return $array[$appname];
     }
 }

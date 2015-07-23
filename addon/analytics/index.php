@@ -9,22 +9,26 @@ add_action("ginger_addon_activation_page", "ginger_analytics_activation_page");
 
 function ginger_analytics_activation_page()
 {
-
-
+    $appname = "google-analytics";
+    $app_data = ginger_app_data($appname);
+    $option_ginger_analitics = get_option('gingeranalytics');
     ?>
-    <table class="form-table striped">
+
+    <div class="ginger-addon">
+<table class="form-table striped">
         <thead>
         <tr>
             <td colspan="2">
+                <img class="ginger-thumb" src="<?php echo $app_data["thumb"]; ?>" />
+
                 <h3><?php _e("Google Analytics", "ginger"); ?>
                     <?php
-                    $appname = "google-analytics";
-                    ginger_app_price($appname);
+                    ginger_app_price($appname, $app_data);
                     ?></h3>
                 <small><?php _e("Google Analytics Add-on will add analytics tracking code to your site, switching automatically between anonymized/not anonymized mode based on user cookies acceptance.", "ginger"); ?></small>
-
+                <br style="clear: both" />
                 <p>
-                    <b style="color:#F99A30"><?php _e("Get activation code here:", "ginger"); ?> <a href="http://www.ginger-cookielaw.com/prodotto/google-analytics" target="_BLANK">http://www.ginger-cookielaw.com/prodotto/google-analytics/</a></b>
+                    <a href="http://www.ginger-cookielaw.com/prodotto/<?php echo $appname; ?>/" target="_BLANK" class="button button-primary" <?php if($option_ginger_analitics && $option_ginger_analitics['activated'] == 1){ echo "disabled='disabled' "; } ?>><?php _e("Get Activation Code", "ginger"); ?></a>
                 </p>
             </td>
         </tr>
@@ -40,7 +44,6 @@ function ginger_analytics_activation_page()
                         <label>
                             <?php _e("Active add-on", "ginger");?>:&nbsp;
                         </label>
-                        <?php $option_ginger_analitics = get_option('gingeranalytics');?>
                         <?php if ($option_ginger_analitics && $option_ginger_analitics['activated'] == 1): ?>
                         <img id="img_google_analytics"
                              src="<?php echo plugins_url('/ginger/img/ok.png'); ?>"
@@ -80,6 +83,7 @@ function ginger_analytics_activation_page()
 
         </tbody>
     </table>
+    </div>
 <?php
 
 }

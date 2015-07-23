@@ -155,4 +155,5 @@ function ginger_analytics_remover($array){
         unset($array[$pos]);
         return $array;
     endif;
+    return $array;
 }

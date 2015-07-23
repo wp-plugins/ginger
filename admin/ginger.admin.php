@@ -71,9 +71,9 @@ $options = get_option($key);
    <h2>Ginger - EU Cookie Law</h2>
 <hr>
    <h2 class="nav-tab-wrapper">
-   <a href="admin.php?page=ginger-setup" class="nav-tab <?php echo (($_GET["page"] == 'ginger-setup') && (($_GET["tab"] == "" ) || $_GET["tab"] == "general")) ? 'nav-tab-active' : ''; ?>"><?php _e("General Configuration", "ginger"); ?></a>
-   <a href="admin.php?page=ginger-setup&tab=banner" class="nav-tab <?php echo (($_GET["page"] == 'ginger-setup') && ($_GET["tab"] == "banner" )) ? 'nav-tab-active' : ''; ?>"><?php _e("Banner Setup", "ginger"); ?></a>
-   <a href="admin.php?page=ginger-setup&tab=policy" class="nav-tab <?php echo (($_GET["page"] == 'ginger-setup') && ($_GET["tab"] == "policy" )) ? 'nav-tab-active' : ''; ?>"><?php _e("Privacy Policy", "ginger"); ?></a>
+   <a href="admin.php?page=ginger-setup" class="nav-tab <?php echo (($_GET["page"] == 'ginger-setup') && ((!isset($_GET["tab"]) ||  $_GET["tab"] == "" ) || (isset($_GET["tab"]) && $_GET["tab"] == "general"))) ? 'nav-tab-active' : ''; ?>"><?php _e("General Configuration", "ginger"); ?></a>
+   <a href="admin.php?page=ginger-setup&tab=banner" class="nav-tab <?php echo (($_GET["page"] == 'ginger-setup') && (isset($_GET["tab"]) && $_GET["tab"] == "banner" )) ? 'nav-tab-active' : ''; ?>"><?php _e("Banner Setup", "ginger"); ?></a>
+   <a href="admin.php?page=ginger-setup&tab=policy" class="nav-tab <?php echo (($_GET["page"] == 'ginger-setup') && (isset($_GET["tab"]) && $_GET["tab"] == "policy" )) ? 'nav-tab-active' : ''; ?>"><?php _e("Privacy Policy", "ginger"); ?></a>
        <?php  do_action("ginger_add_tab_menu"); ?>
    </h2>
     <form method="post" action="admin.php?page=<?php echo $_GET["page"]; ?><?php if(isset($tab)) echo '&tab=' . $tab; ?>" <?php if (isset($tab) && $tab == 'url') echo 'class="repeater"';?>>
