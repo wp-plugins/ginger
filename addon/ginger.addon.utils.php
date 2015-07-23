@@ -5,8 +5,6 @@
  *
  */
 
-
-
 $addons = ginger_include_addons();
 
 function ginger_include_addons(){
@@ -34,8 +32,13 @@ function ginger_include_addons(){
 function execute_request( $args ) {
     $target_url = create_url( $args );
     $data = wp_remote_get( $target_url );
-    $data = json_decode(strip_tags(wp_remote_retrieve_body( $data )));
-    return $data;
+    if ( is_wp_error( $data ) ) {
+        return $data;
+    }else{
+        $data = json_decode(strip_tags(wp_remote_retrieve_body( $data )));
+        return $data;
+    }
+
 }
 
 // Create an url based on
@@ -56,21 +59,12 @@ function ginger_add_on_menu_page(){
 
 $wp_root = dirname( dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) );
 if ( file_exists( $wp_root . '/wp-load.php' ) ) {
-    require_once( $wp_root . "/wp-load.php" );
+   // require_once( $wp_root . "/wp-load.php" );
 } else {
     exit;
 }
 
 if ( ! current_user_can( 'manage_options' ) ) die();
-
-//$base_url      = 'http://www.ginger-cookielaw.com/';
-//$email         = 'mb@matteobarale.com';
-//$product_id    = 'gingeranalytics';
-//$licence_key   = 'gingerba76a04b-18a0-47e6-89e2-c59848047c56';
-//$instance  	   = 'ginger.dev';
-//print_r($_GET);
-
-
 
 
 $request = ( isset( $_GET['request'] ) ) ? $_GET['request'] : '';
@@ -79,23 +73,8 @@ $activationcode = ( isset( $_GET['activationcode'] ) ) ? $_GET['activationcode']
 $product_id = ( isset( $_GET['product_id'] ) ) ? $_GET['product_id'] : '';
 
 
-$links = array(
-    'invalid' => 'Invalid request',
-    'generate_key' => 'Generate key',
-    'check' => 'Check request',
-    'activation' => 'Activation request',
-    'activation_reset' => 'Application reset',
-    'deactivation' => 'Deactivation'
-);
-
-foreach ( $links as $key => $value ) {
-    echo '<a href="' . add_query_arg( 'request', $key ) . '">' . $value . '</a> | ';
-}
-
-echo '<br/><br/>';
-
-//
 // Valid activation request
+    $notice = false;
 if ( $request == 'activation' && $activationcode != '' && $activationemail != '' && $product_id != '' ) {
     $args = array(
         'request'     => 'activation',
@@ -106,8 +85,7 @@ if ( $request == 'activation' && $activationcode != '' && $activationemail != ''
     );
 
     $data = execute_request( $args );
-    var_dump($data);
-    if($data->activated == 1):
+    if($data->activated == 1){
         $args = array(
             'activated'   => 1,
             'email'       => $activationemail,
@@ -116,7 +94,13 @@ if ( $request == 'activation' && $activationcode != '' && $activationemail != ''
             'instance'    => get_bloginfo('url'),
         );
         $array_activate = update_option($product_id, $args);
-    endif;
+        $notice = $data->message;
+    }else{
+    $notice = $data->error;
+    }
+}else if($request == 'activation' && ($activationcode == '' || $activationemail == '' || $product_id == '' )){
+
+    $notice = __("Fill all required fields!", "ginger");
 }
 
 // Valid check request
@@ -130,9 +114,6 @@ if ( $request == 'check' ) {
     );
 
     $data = execute_request( $args );
-    //('<pre>');
-    //print_r(json_decode($data['body']));
-    //echo('</pre>');
 
 }
 
@@ -146,7 +127,7 @@ if ( $request == 'activation_reset' ) {
         'secret_key'  => $secret_key,
     );
 
-    echo '<b>Valid activation reset request:</b><br />';
+$notice = __("Valid activation reset request", "ginger");
     $data = execute_request( $args );
     //echo('<pre>');
     //print_r(json_decode($data['body']));
@@ -165,15 +146,53 @@ if ( $request == 'deactivation' && $activationcode != '' && $activationemail != 
         'product_id'  => $product_id,
         'instance'    => get_bloginfo('url'),
     );
-
-    echo '<b>Valid deactivation request:</b><br />';
+    $notice = __("Valid deactivation request", "ginger");
     execute_request( $args );
     delete_option( $product_id );
 }
 
-?>
+    if($notice){
+        ?>
+        <script type="text/javascript">
+            location.href='admin.php?page=<?php echo $_GET["page"]; ?>&notice=<?php echo urlencode($notice); ?>';
+        </script>
+        <?php
+    }
 
+    if(isset($_GET["notice"]) && $_GET["notice"])$notice=$_GET["notice"];
+?>
+<style>
+.ginger-addon{
+    width: 44%;
+    min-width: 420px;
+    float:left;
+    background-color:#FCDCAB;
+    margin: 0px 10px 10px 0px;
+    min-height:300px
+}
+.ginger-thumb{
+    width: 120px;
+    float:left;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+.ginger-addon tbody tr{
+    background-color:#FBD69D !important;
+}
+
+.ginger-addon thead tr{
+    background-color:#FCDCAB !important;
+}
+.ginger-addon h3{
+    margin-top:0px
+}
+</style>
 <div class="wrap">
+    <?php
+    if($notice){
+        echo '<div class="updated"><p>'.$notice.'</p></div>';
+    }
+        ?>
     <h2><?php _e("Ginger Available Add-ons", "ginger"); ?></h2>
     <hr>
     <?php do_action("ginger_addon_activation_page"); ?>

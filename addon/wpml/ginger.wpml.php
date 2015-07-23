@@ -177,23 +177,23 @@ function ginger_wpml_menu_page(){
                             <p>
                                 <label><?php _e("Text", "ginger"); ?></label>
                                 <input name="disable_cookie_button_text[<?php echo $langcode; ?>]" id="disable_cookie_button_text_<?php echo $langcode; ?>" type="text"
-                                       value="<?php if ($options['disable_cookie_button_text'][$langcode] != "") {
+                                       value="<?php if (isset($options['disable_cookie_button_text'][$langcode]) && $options['disable_cookie_button_text'][$langcode] != "") {
                                            echo $options['disable_cookie_button_text'][$langcode];
                                        } else {
                                            echo _e('Disable Cookie', 'ginger');
-                                       } ?>" <?php if ($options['disable_cookie_button_status'][$langcode] != "1") {
+                                       } ?>" <?php if (!(isset($options['disable_cookie_button_status'][$langcode]) && $options['disable_cookie_button_status'][$langcode] == "1")) {
                                     echo 'disabled=true';
                                 } ?>>
                                 <?php echo _e('Enable:', 'ginger') ?>&nbsp;
                                 <input type="checkbox" id="disable_cookie_button_status_<?php echo $langcode; ?>" name="disable_cookie_button_status[<?php echo $langcode; ?>]"
-                                       value="1" <?php if ($options['disable_cookie_button_status'][$langcode] == "1") {
+                                       value="1" <?php if (isset($options['disable_cookie_button_status'][$langcode]) && $options['disable_cookie_button_status'][$langcode] == "1") {
                                     echo 'checked';
                                 } ?>
                                        onclick="en_dis_able_text_banner_button('disable_cookie_button_status_<?php echo $langcode; ?>','disable_cookie_button_text_<?php echo $langcode; ?>','img_disable_cookie_button_status_<?php echo $langcode; ?>');">
 
 
                                 <img id="img_disable_cookie_button_status_<?php echo $langcode; ?>"
-                                     src="<?php if ($options['disable_cookie_button_status'][$langcode] == "1") {
+                                     src="<?php if (isset($options['disable_cookie_button_status'][$langcode]) && $options['disable_cookie_button_status'][$langcode] == "1") {
                                          echo plugins_url("ginger/img/ok.png");
                                      } else {
                                          echo plugins_url("ginger/img/xx.png");
@@ -228,3 +228,96 @@ function ginger_wpml_menu_page(){
 <?php
 
 }
+
+
+add_filter("ginger_text_iframe", "ginger_wpml_text_iframe");
+function ginger_wpml_text_iframe($text){
+    $key = "ginger_wpml_options";
+    $options = get_option($key);
+    if($options == "") return $text;
+    if (!function_exists('icl_get_languages')) return $text;
+
+    global $sitepress;
+    $current_lang = $sitepress->get_current_language(); //save current language
+
+    if(trim(strip_tags($options['ginger_Iframe_text'][$current_lang]))):
+        $ginger_iframe_text = $options['ginger_Iframe_text'][$current_lang];
+        $ginger_iframe_text = str_replace('</', '<\/', $ginger_iframe_text);
+        $ginger_iframe_text = str_replace( array("\n", "\r"), "<br \/>", $ginger_iframe_text );
+        return $ginger_iframe_text;
+    endif;
+
+    return $text;
+}
+
+
+add_filter("ginger_text_banner", "ginger_wpml_text_banner");
+function ginger_wpml_text_banner($text)
+{
+    $key = "ginger_wpml_options";
+    $options = get_option($key);
+    if ($options == "") return $text;
+    if (!function_exists('icl_get_languages')) return $text;
+
+    global $sitepress;
+    $current_lang = $sitepress->get_current_language(); //save current language
+
+    if (trim(strip_tags($options['ginger_banner_text'][$current_lang])) != ""):
+        $ginger_text = $options['ginger_banner_text'][$current_lang];
+        $ginger_text = str_replace('</', '<\/', $ginger_text);
+        $ginger_text = str_replace(array("\n", "\r"), "<br \/>", $ginger_text);
+
+        //Recupero privacy policy se presente
+        if (strpos($ginger_text, '{{privacy_page}}') !== false):
+            $privacy_policy = $options['ginger_privacy_page'][$current_lang];
+            if ($privacy_policy) {
+
+                $privacy_policy = get_post($privacy_policy);
+                $privacy_policy = ' <a href="' . get_permalink($privacy_policy->ID) . '">' . addslashes($privacy_policy->post_title) . '<\/a>';
+                $ginger_text = str_replace('{{privacy_page}}', $privacy_policy, $ginger_text);
+            }
+        endif;
+        return $ginger_text;
+    endif;
+
+    return $text;
+}
+
+add_filter("ginger_label_accept_cookie", "ginger_wpml_label_accept_cookie");
+function ginger_wpml_label_accept_cookie($text){
+    $key = "ginger_wpml_options";
+    $options = get_option($key);
+    if($options == "") return $text;
+    if (!function_exists('icl_get_languages')) return $text;
+
+    global $sitepress;
+    $current_lang = $sitepress->get_current_language();
+
+    if(trim($options['accept_cookie_button_text'][$current_lang])):
+        $label_accept_cookie =  $options['accept_cookie_button_text'][$current_lang];
+        return $label_accept_cookie;
+    endif;
+
+    return $text;
+}
+
+add_filter("ginger_label_disable_cookie", "ginger_wpml_label_disable_cookie");
+function ginger_wpml_label_disable_cookie($text){
+    $key = "ginger_wpml_options";
+    $options = get_option($key);
+    if($options == "") return $text;
+    if (!function_exists('icl_get_languages')) return $text;
+
+    global $sitepress;
+    $current_lang = $sitepress->get_current_language(); //save current language
+    if($options['disable_cookie_button_status'][$current_lang]):
+        if(trim($options['disable_cookie_button_text'][$current_lang])):
+            $label_disable_cookie =  $options['disable_cookie_button_text'][$current_lang];
+            return $label_disable_cookie;
+        endif;
+    endif;
+
+    return $text;
+}
+
+

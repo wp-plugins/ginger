@@ -42,7 +42,6 @@ function ginger_adsense(){
     $data = execute_request( $args );
     if($data->success == 1): //Inizio Verifica ?>
     <div class="wrap">
-        <?php $option  = get_option('gingeradsense_option');?>
         <h2>Ginger - Adsense Add On</h2>
        <p><?php _e("No configuration required!", "ginger"); ?></p>
 
