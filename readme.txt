@@ -34,7 +34,7 @@ The aim of Ginger is to be a **complete plug'n play solution** that make your we
 * Disqus
 * ShareThis
 
-= Developer Addons: =
+= Activable Addons: =
 * Adsense
 * Analytics
 * WPML
