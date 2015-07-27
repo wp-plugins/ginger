@@ -1,24 +1,21 @@
 <?php
-add_action("ginger_add_menu", "ginger_wpml_menu");
+add_action("ginger_add_menu", "ginger_polylang_menu");
 
-function ginger_wpml_menu(){
+function ginger_polylang_menu(){
 
-    add_submenu_page( 'ginger-setup', "WPML", __("WPML", "ginger"), 'manage_options', 'ginger-wpml', 'ginger_wpml_menu_page');
+    add_submenu_page( 'ginger-setup', "polylang", __("Polylang", "ginger"), 'manage_options', 'ginger-polylang', 'ginger_polylang_menu_page');
 
 
 }
 
-function ginger_wpml_menu_page(){
-    global $sitepress;
-    if($sitepress){
-    $current_lang = $sitepress->get_current_language(); //save current language
-    }else{
-        echo '<div class="wrap"><h2>WPML - Ginger setup</h2><hr><p>'.__("WPML not found!", "ginger").'</p></div>';
-        exit;
-    }
+function ginger_polylang_menu_page(){
+   // global $sitepress;
+    global $polylang;
+   // $current_lang = $sitepress->get_current_language(); //save current language
+    $current_lang = pll_current_language();
 
-    $key = "ginger_wpml_options";
-    if(isset($_POST["submit"]) && !wp_verify_nonce($_POST['ginger_options'], 'save_ginger_wpml_options')){
+    $key = "ginger_polylang_options";
+    if(isset($_POST["submit"]) && !wp_verify_nonce($_POST['ginger_options'], 'save_ginger_polylang_options')){
         return;
     }
 
@@ -40,13 +37,13 @@ function ginger_wpml_menu_page(){
   //  print_r($options);
 ?>
     <div class="wrap">
-        <h2>WPML - Ginger setup</h2>
+        <h2>polylang - Ginger setup</h2>
         <hr>
 
         <?php
         if (!function_exists('icl_get_languages')) {
             echo "<h3>";
-            _e("WPML is disabled!", "ginger");
+            _e("polylang is disabled!", "ginger");
             echo "</h3>";
 
             _e("Enable here:", "ginger");
@@ -66,12 +63,19 @@ function ginger_wpml_menu_page(){
                     </thead>
                     <tbody>
 
-                <?php wp_nonce_field('save_ginger_wpml_options', 'ginger_options'); ?>
+                <?php wp_nonce_field('save_ginger_polylang_options', 'ginger_options'); ?>
                 <?php
-                $languages = icl_get_languages('skip_missing=0');
+//                $languages = icl_get_languages('skip_missing=0');
+                if (isset($polylang))
+                    $languages = $polylang->model->get_languages_list() ;
+
 //print_r($languages);
                 $c=0;
-            foreach ($languages as $langcode=>$langval ) {
+            foreach ($languages as $language) {
+                $langcode=$language->slug;
+                $langval["native_name"] =  $language->name;
+                $langval["slug"] =  $language->slug;
+
 ?>
                 <tr style="background-color:#F99A30; ">
                     <th scope="row" style="padding-left:20px;"></th>
@@ -86,6 +90,8 @@ function ginger_wpml_menu_page(){
                         <fieldset>
                             <legend class="screen-reader-text"><span><?php _e("Banner Text", "ginger"); ?></span></legend>
                             <p><label><?php
+                                    if(!isset($options["ginger_banner_text"][$langcode]))
+                                        $options["ginger_banner_text"][$langcode] = "";
                                     if (function_exists("wp_editor"))
                                         wp_editor(stripslashes($options["ginger_banner_text"][$langcode]), "ginger_bar_text_".$langcode."", array('textarea_name' => "ginger_banner_text[".$langcode."]", 'media_buttons' => false, 'textarea_rows' => 3, 'teeny' => true));
                                     else
@@ -105,7 +111,7 @@ function ginger_wpml_menu_page(){
                         <fieldset>
                             <p><label>
                                     <?php
-                                    $sitepress->switch_lang($langcode);
+          //                          $sitepress->switch_lang($langcode);
                                     $args = array(
                                         'sort_order' => 'asc',
                                         'sort_column' => 'post_title',
@@ -114,9 +120,12 @@ function ginger_wpml_menu_page(){
                                         'offset' => 0,
                                         'post_type' => 'page',
                                         'post_status' => 'publish',
+                                        'lang' => $langcode
                                     );
+                               //     print_r($args);
 
                                     $p = new WP_Query( $args );
+                                    if(!isset($options["ginger_privacy_page"][$langcode]))$options["ginger_privacy_page"][$langcode] = "";
                                     ?>
                                     <select name="ginger_privacy_page[<?php echo $langcode; ?>]"  id="privacy_page_select_<?php echo $langcode; ?>" >
                                         <option value=""><?php _e('Select page', 'ginger'); ?></option>
@@ -130,7 +139,7 @@ function ginger_wpml_menu_page(){
                                         ?>
                                     </select>
                                     <?php
-                                    $sitepress->switch_lang($current_lang); //restore previous language
+                                 //   $sitepress->switch_lang($current_lang); //restore previous language
                                     ?>
 
                                 </label></p>
@@ -146,6 +155,8 @@ function ginger_wpml_menu_page(){
                         <fieldset>
                             <legend class="screen-reader-text"><span><?php _e("Iframe Text", "ginger"); ?></span></legend>
                             <p><label><?php
+                                    if(!isset($options["ginger_Iframe_text"][$langcode]))
+                                    $options["ginger_Iframe_text"][$langcode] = "";
                                     if (function_exists("wp_editor"))
                                         wp_editor(stripslashes($options["ginger_Iframe_text"][$langcode]), "ginger_Iframe_text_".$langcode."", array('textarea_name' => "ginger_Iframe_text[".$langcode."]", 'media_buttons' => false, 'textarea_rows' => 3, 'teeny' => true));
                                     else
@@ -167,6 +178,9 @@ function ginger_wpml_menu_page(){
 
                             <p>
                                 <label><?php _e("Text", "ginger"); ?></label>
+                                <?php
+                                if(!isset($options['accept_cookie_button_text'][$langcode]))$options['accept_cookie_button_text'][$langcode] = "";
+                                ?>
                                 <input name="accept_cookie_button_text[<?php echo $langcode; ?>]" id="accept_cookie_button_text_<?php echo $langcode; ?>" type="text"
                                        value="<?php if ($options['accept_cookie_button_text'][$langcode] != "") {
                                            echo $options['accept_cookie_button_text'][$langcode];
@@ -223,7 +237,7 @@ function ginger_wpml_menu_page(){
             </form>
                 <?php
 
-        }// check wpml active
+        }// check polylang active
         ?>
 
 
@@ -235,19 +249,18 @@ function ginger_wpml_menu_page(){
 }
 
 
-add_filter("ginger_text_iframe", "ginger_wpml_text_iframe");
-function ginger_wpml_text_iframe($text){
-    $key = "ginger_wpml_options";
+add_filter("ginger_text_iframe", "ginger_polylang_text_iframe");
+function ginger_polylang_text_iframe($text){
+    $key = "ginger_polylang_options";
     $options = get_option($key);
     if($options == "") return $text;
     if (!function_exists('icl_get_languages')) return $text;
 
-    global $sitepress;
-    if($sitepress)
-        $current_lang = $sitepress->get_current_language(); //save current language
-    else
-        return $text;
+  /*  global $sitepress;
+    $current_lang = $sitepress->get_current_language(); //save current language
+*/
 
+    $current_lang = pll_current_language();
     if(trim(strip_tags($options['ginger_Iframe_text'][$current_lang]))):
         $ginger_iframe_text = $options['ginger_Iframe_text'][$current_lang];
         $ginger_iframe_text = str_replace('</', '<\/', $ginger_iframe_text);
@@ -259,19 +272,18 @@ function ginger_wpml_text_iframe($text){
 }
 
 
-add_filter("ginger_text_banner", "ginger_wpml_text_banner");
-function ginger_wpml_text_banner($text)
+add_filter("ginger_text_banner", "ginger_polylang_text_banner");
+function ginger_polylang_text_banner($text)
 {
-    $key = "ginger_wpml_options";
+    $key = "ginger_polylang_options";
     $options = get_option($key);
     if ($options == "") return $text;
     if (!function_exists('icl_get_languages')) return $text;
 
-    global $sitepress;
-    if($sitepress)
-    $current_lang = $sitepress->get_current_language(); //save current language
-    else
-    return $text;
+//    global $sitepress;
+//    $current_lang = $sitepress->get_current_language(); //save current language
+    $current_lang = pll_current_language();
+
     if (trim(strip_tags($options['ginger_banner_text'][$current_lang])) != ""):
         $ginger_text = $options['ginger_banner_text'][$current_lang];
         $ginger_text = str_replace('</', '<\/', $ginger_text);
@@ -293,18 +305,16 @@ function ginger_wpml_text_banner($text)
     return $text;
 }
 
-add_filter("ginger_label_accept_cookie", "ginger_wpml_label_accept_cookie");
-function ginger_wpml_label_accept_cookie($text){
-    $key = "ginger_wpml_options";
+add_filter("ginger_label_accept_cookie", "ginger_polylang_label_accept_cookie");
+function ginger_polylang_label_accept_cookie($text){
+    $key = "ginger_polylang_options";
     $options = get_option($key);
     if($options == "") return $text;
     if (!function_exists('icl_get_languages')) return $text;
 
-    global $sitepress;
-    if($sitepress)
-        $current_lang = $sitepress->get_current_language();
-    else
-        return $text;
+ //   global $sitepress;
+ //   $current_lang = $sitepress->get_current_language();
+    $current_lang = pll_current_language();
 
     if(trim($options['accept_cookie_button_text'][$current_lang])):
         $label_accept_cookie =  $options['accept_cookie_button_text'][$current_lang];
@@ -314,19 +324,18 @@ function ginger_wpml_label_accept_cookie($text){
     return $text;
 }
 
-add_filter("ginger_label_disable_cookie", "ginger_wpml_label_disable_cookie");
-function ginger_wpml_label_disable_cookie($text){
-    $key = "ginger_wpml_options";
+add_filter("ginger_label_disable_cookie", "ginger_polylang_label_disable_cookie");
+function ginger_polylang_label_disable_cookie($text){
+    $key = "ginger_polylang_options";
     $options = get_option($key);
     if($options == "") return $text;
     if (!function_exists('icl_get_languages')) return $text;
 
-    global $sitepress;
-    if($sitepress)
-    $current_lang = $sitepress->get_current_language(); //save current language
-    else
-        return $text;
-    if($options['disable_cookie_button_status'][$current_lang]):
+  //  global $sitepress;
+  //  $current_lang = $sitepress->get_current_language(); //save current language
+    $current_lang = pll_current_language();
+
+    if(isset($options['disable_cookie_button_status'][$current_lang])):
         if(trim($options['disable_cookie_button_text'][$current_lang])):
             $label_disable_cookie =  $options['disable_cookie_button_text'][$current_lang];
             return $label_disable_cookie;

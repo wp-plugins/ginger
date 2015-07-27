@@ -4,7 +4,7 @@ Donate link: http://www.ginger-cookielaw.com/
 Tags: EU Cookie Law, cookie law, block cookie, cookie consent, cookie law, cookie policy, privacy policy, cookie banner, italian cookie law, cookie italia
 Requires at least: 3.0.1
 Tested up to: 4.2.2
-Stable tag: 2.1
+Stable tag: 2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,15 +33,18 @@ The aim of Ginger is to be a **complete plug'n play solution** that make your we
 * vimeo
 * Disqus
 * ShareThis
+
+= Developer Addons: =
 * Adsense
+* Analytics
 * WPML
-* Custom Javascript url
-* Custom Iframe url
+* Polylang
+* Custom Javascript url & Custom Iframe url
 
 = Coming soon: =
 * **Privacy Policy**  Generator
 * **Logger** addon
-* **Multisite**
+* **Multisite** addon
 
 More information [here: ginger-cookielaw.com](http://www.ginger-cookielaw.com/)
 
