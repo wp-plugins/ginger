@@ -95,6 +95,8 @@ if ( $request == 'activation' && $activationcode != '' && $activationemail != ''
         );
         $array_activate = update_option($product_id, $args);
         $notice = $data->message;
+        do_action("ginger_activated_addon", $product_id);
+
     }else{
     $notice = $data->error;
     }
@@ -102,6 +104,7 @@ if ( $request == 'activation' && $activationcode != '' && $activationemail != ''
 
     $notice = __("Fill all required fields!", "ginger");
 }
+
 
 // Valid check request
 if ( $request == 'check' ) {

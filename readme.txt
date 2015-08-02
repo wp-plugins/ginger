@@ -4,7 +4,7 @@ Donate link: http://www.ginger-cookielaw.com/
 Tags: EU Cookie Law, cookie law, block cookie, cookie consent, cookie law, cookie policy, privacy policy, cookie banner, italian cookie law, cookie italia
 Requires at least: 3.0.1
 Tested up to: 4.2.3
-Stable tag: 2.2
+Stable tag: 2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,7 +18,7 @@ The aim of Ginger is to be a **complete plug'n play solution** that make your we
 * complete **banner** configuration: style, position and colors
 * **Opt-in** mode enabler: block cookies BEFORE user acceptance (fit for **Italy** regulation)
 * Exclude Google Analytics cookie if not **anonymized**
-* Complatible with server **caching**
+* Compatible with server **caching**
 
 
 = Actually Support: =
@@ -40,16 +40,15 @@ The aim of Ginger is to be a **complete plug'n play solution** that make your we
 * WPML
 * Polylang
 * Custom Javascript url & Custom Iframe url
+* Cookie User Acceptance Log
 
 = Coming soon: =
 * **Privacy Policy**  Generator
-* **Logger** addon
 * **Multisite** addon
 
 More information [here: ginger-cookielaw.com](http://www.ginger-cookielaw.com/)
 
 **Send us [suggestions or bug report](https://wordpress.org/support/plugin/ginger)!**
-
 
 == Installation ==
 
@@ -81,6 +80,12 @@ No, you can be safe from plugins conflict. It's been developed using Cookies Ena
 
 == Changelog ==
 
+
+= 2.3 =
+* Logger addon
+
+= 2.2 =
+* Polylang support
 
 = 2.1 =
 * Custom js/iframe addon
