@@ -8,10 +8,10 @@ Stable tag: 2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Ginger allows to show a configurable banner and blocks the most common third party cookies complying with European Cookie Laws.
+Ginger allows to show a configurable banner and blocks third party cookies complying with European Cookie Laws.
 == Description ==
 
-The aim of Ginger is to be a **complete plug'n play solution** that make your website compliant with EU Cookie law.
+Ginger is a **complete plug'n play solution** that make your website compliant with EU Cookie law. Configure your banner and block cookies **before** or **after** users' choise.
 
 = Features: =
 * really **plug'n play**: simply activate, and enjoy
@@ -21,7 +21,7 @@ The aim of Ginger is to be a **complete plug'n play solution** that make your we
 * Compatible with server **caching**
 
 
-= Actually Support: =
+= Natively Supports: =
 * twitter
 * facebook
 * linkedin
@@ -35,12 +35,12 @@ The aim of Ginger is to be a **complete plug'n play solution** that make your we
 * ShareThis
 
 = Activable Addons: =
+* Custom Javascript url & Custom Iframe url to extend native support
 * Adsense
 * Analytics
 * WPML
 * Polylang
-* Custom Javascript url & Custom Iframe url
-* Cookie User Acceptance Log
+* Cookie Users' Acceptance Logger
 
 = Coming soon: =
 * **Privacy Policy**  Generator
@@ -70,6 +70,14 @@ Sure, you can choose opt-in or opt-out mode to let it work as you wish.
 
 No, you can be safe from plugins conflict. It's been developed using Cookies Enabler Js Library developed by Nicholas Ruggeri:  https://github.com/nicholasruggeri/cookies-enabler
 
+= What about other cookies not supported natively? =
+
+You can enable **Custom JS & Iframe url** to add any javascript/iframe you need to manage and block.
+
+= Is compatible with multilanguage websites? =
+
+Yes, actually you we have 2 addons for multilanguages: wpml and polylang. Ask to our support forum for custom requestes
+
 
 == Screenshots ==
 
@@ -77,6 +85,8 @@ No, you can be safe from plugins conflict. It's been developed using Cookies Ena
 2. Banner setup: dialog or banner, colors, posizions, etc
 3. Privacy Policy Setup Page
 4. Front-end example of light banner in footer, with iframe locked before approvation in opt-in mode
+5. Available addons/extensions
+6. Logger addon example
 
 == Changelog ==
 
