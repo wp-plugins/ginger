@@ -3,25 +3,25 @@ Contributors: manafactory, webgrafia, matteobarale
 Donate link: http://www.ginger-cookielaw.com/
 Tags: EU Cookie Law, cookie law, block cookie, cookie consent, cookie law, cookie policy, privacy policy, cookie banner, italian cookie law, cookie italia
 Requires at least: 3.0.1
-Tested up to: 4.2.2
-Stable tag: 2.1
+Tested up to: 4.2.3
+Stable tag: 2.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Ginger allows to show a configurable banner and blocks the most common third party cookies complying with European Cookie Laws.
+Ginger allows to show a configurable banner and blocks third party cookies complying with European Cookie Laws.
 == Description ==
 
-The aim of Ginger is to be a **complete plug'n play solution** that make your website compliant with EU Cookie law.
+Ginger is a **complete plug'n play solution** that make your website compliant with EU Cookie law. Configure your banner and block cookies **before** or **after** users' choise.
 
 = Features: =
 * really **plug'n play**: simply activate, and enjoy
 * complete **banner** configuration: style, position and colors
 * **Opt-in** mode enabler: block cookies BEFORE user acceptance (fit for **Italy** regulation)
 * Exclude Google Analytics cookie if not **anonymized**
-* Complatible with server **caching**
+* Compatible with server **caching**
 
 
-= Actually Support: =
+= Natively Supports: =
 * twitter
 * facebook
 * linkedin
@@ -33,20 +33,22 @@ The aim of Ginger is to be a **complete plug'n play solution** that make your we
 * vimeo
 * Disqus
 * ShareThis
+
+= Activable Addons: =
+* Custom Javascript url & Custom Iframe url to extend native support
 * Adsense
+* Analytics
 * WPML
-* Custom Javascript url
-* Custom Iframe url
+* Polylang
+* Cookie Users' Acceptance Logger
 
 = Coming soon: =
 * **Privacy Policy**  Generator
-* **Logger** addon
-* **Multisite**
+* **Multisite** addon
 
 More information [here: ginger-cookielaw.com](http://www.ginger-cookielaw.com/)
 
 **Send us [suggestions or bug report](https://wordpress.org/support/plugin/ginger)!**
-
 
 == Installation ==
 
@@ -68,6 +70,14 @@ Sure, you can choose opt-in or opt-out mode to let it work as you wish.
 
 No, you can be safe from plugins conflict. It's been developed using Cookies Enabler Js Library developed by Nicholas Ruggeri:  https://github.com/nicholasruggeri/cookies-enabler
 
+= What about other cookies not supported natively? =
+
+You can enable **Custom JS & Iframe url** to add any javascript/iframe you need to manage and block.
+
+= Is compatible with multilanguage websites? =
+
+Yes, actually you we have 2 addons for multilanguages: wpml and polylang. Ask to our support forum for custom requestes
+
 
 == Screenshots ==
 
@@ -75,9 +85,23 @@ No, you can be safe from plugins conflict. It's been developed using Cookies Ena
 2. Banner setup: dialog or banner, colors, posizions, etc
 3. Privacy Policy Setup Page
 4. Front-end example of light banner in footer, with iframe locked before approvation in opt-in mode
+5. Available addons/extensions
+6. Logger addon example
+7. Custom Javascript Configurator Addon
+8. Custom Iframe Configurator Addon
+
 
 == Changelog ==
 
+
+= 2.3.1 =
+* Contextual Help
+
+= 2.3 =
+* Logger addon
+
+= 2.2 =
+* Polylang support
 
 = 2.1 =
 * Custom js/iframe addon
