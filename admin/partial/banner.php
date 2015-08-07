@@ -49,7 +49,7 @@
                             echo '<textarea name = "ginger_banner_text" >' . $options["ginger_banner_text"] . '</textarea>';
                         ?>
                         <br>
-                        <small><?php _e('You can use syntax <code>{{privacy_page}}</code> to link Privacy Police Page defined in <a href="admin.php?page=ginger-setup&tab=policy">Privacy Policy Tab</a>', "ginger"); ?></small>
+                        <small><?php _e('You can use syntax <code><input type="text" value="{{privacy_page}}" style="border:none; width: 160px; text-align:center;"></code> to link Privacy Police Page defined in <a href="admin.php?page=ginger-setup&tab=policy">Privacy Policy Tab</a>', "ginger"); ?></small>
                     </label>
                 </p>
             </fieldset>
