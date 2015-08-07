@@ -87,6 +87,9 @@ Yes, actually you we have 2 addons for multilanguages: wpml and polylang. Ask to
 4. Front-end example of light banner in footer, with iframe locked before approvation in opt-in mode
 5. Available addons/extensions
 6. Logger addon example
+7. Custom Javascript Configurator Addon
+8. Custom Iframe Configurator Addon
+
 
 == Changelog ==
 
